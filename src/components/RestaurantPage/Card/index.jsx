@@ -2,13 +2,15 @@ import React from 'react'
 import Counter from '../../Counter'
 import s from './styles.module.sass'
 
+
+const countDishesRange = {
+    min: 0,
+    max: 5
+}
+
 function Card({ data }) {
     const { name, menu, reviews } = data
-    const countDishesRange = {
-        min: 0,
-        max: 5
-    }
-
+    
     return (
         <article className={s.card}>
             <h2 className={s.card_title}>{name}</h2>
