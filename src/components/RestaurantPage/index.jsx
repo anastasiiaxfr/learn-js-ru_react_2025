@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Card from './Card'
 import Tags from '../Tags'
 
@@ -20,17 +20,12 @@ function Restauraunt({ data }) {
     ]
 
     const [currentTab, setCurrentTab] = useState(defaultTab)
-    const [currentRes, setCurrentRes] = useState(data)
 
-    useEffect(() => {
-        if (currentTab.name === 'All') {
-            setCurrentRes(data)
-        } else {
-            setCurrentRes([
-                data.find((restaurant) => restaurant.id === currentTab.id),
-            ])
-        }
-    }, [currentTab, data])
+    const currentRestaraunt =
+        currentTab.name === 'All'
+            ? data
+            : data.find((restaurant) => restaurant.id === currentTab.id)
+
     return (
         <>
             <section>
@@ -45,12 +40,15 @@ function Restauraunt({ data }) {
             <section>
                 <div className="container">
                     <div className="cards">
-                        {currentRes.length === 1 ? (
-                            <Card data={currentRes[0]} id={currentRes[0].id} />
-                        ) : (
-                            currentRes.map((res) => (
-                                <Card data={res} key={res.id} />
+                        {currentRestaraunt.length ? (
+                            currentRestaraunt.map((restaurant) => (
+                                <Card data={restaurant} key={restaurant.id} />
                             ))
+                        ) : (
+                            <Card
+                                data={currentRestaraunt}
+                                id={currentRestaraunt.id}
+                            />
                         )}
                     </div>
                 </div>
