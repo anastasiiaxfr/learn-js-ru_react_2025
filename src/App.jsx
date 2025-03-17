@@ -1,20 +1,13 @@
-import Card from "./components/restaurant-card"
+import Layout from './components/Layout/Layout'
+import Restauraunt from './components/RestaurantPage'
 
 function App({ data }) {
-
-  return (
-    <>
-      <main>
-        <div className="container">
-          <section className="cards">
-            {data.map((restaurant) => (
-              <Card data={restaurant} key={restaurant.id} />
-            ))}
-          </section>
-        </div>
-      </main>
-    </>
-  )
+    
+    return (
+        <Layout>
+           <Restauraunt data={data} />
+        </Layout>
+    )
 }
 
 export default App

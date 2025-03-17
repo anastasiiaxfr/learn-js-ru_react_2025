@@ -1,0 +1,21 @@
+@import ../../../assets/styles/sass/vars
+
+.card
+    padding: $gap3
+    box-shadow: $bxsd
+    border-radius: $brs1
+    background-color: $white
+    transition: $trs
+    &:hover
+        box-shadow: none
+        transform: translateY(-10px)
+    &_title
+        margin-top: 0
+        margin-bottom: $gap1
+    &_list
+        display: flex
+        flex-direction: column
+        gap: $gap1
+        li
+            & > div
+                margin-top: $gap1

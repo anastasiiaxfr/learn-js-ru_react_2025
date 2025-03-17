@@ -5,7 +5,7 @@ import './assets/styles/sass/styles.sass'
 import { restaurants } from './mock.js'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App data={ restaurants} />
-  </StrictMode>,
+    <StrictMode>
+        <App data={restaurants} />
+    </StrictMode>
 )
