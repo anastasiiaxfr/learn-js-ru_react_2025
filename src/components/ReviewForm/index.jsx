@@ -13,7 +13,13 @@ export default function ReviwForm() {
     } = useForm()
 
     return (
-        <form action="/" method="GET" noValidate className={s.form}>
+        <form
+            action="/"
+            method="GET"
+            noValidate
+            className={s.form}
+            onSubmit={(e) => e.preventDefault()}
+        >
             <div>
                 <label htmlFor="name">Name</label>
                 <input

@@ -35,12 +35,10 @@ export function useForm() {
 
     const [state, dispatch] = useReducer(formReducer, initialState)
 
-    const increment = (e) => {
-        e.preventDefault()
+    const increment = () => {
         dispatch({ type: SET_INCREMENT_RATING })
     }
-    const decrement = (e) => {
-        e.preventDefault()
+    const decrement = () => {
         dispatch({ type: SET_DECREMENT_RATING })
     }
 
@@ -49,8 +47,7 @@ export function useForm() {
         dispatch({ type: 'SET_FIELD', field: name, value })
     }
 
-    const onFormSubmit = (e) => {
-        e.preventDefault()
+    const onFormSubmit = () => {
 
         if (!state.name || !state.review || state.count === 0) {
             dispatch({
@@ -69,8 +66,7 @@ export function useForm() {
         }
     }
 
-    const onFormReset = (event) => {
-        event.preventDefault()
+    const onFormReset = () => {
         dispatch({ type: 'RESET_FORM' })
     }
     return { state, onFormSubmit, onFormReset, handleInputChange,  increment, decrement}
