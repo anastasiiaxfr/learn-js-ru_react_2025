@@ -1,16 +1,14 @@
+import React from 'react'
 import s from './styles.module.sass'
-import { useCounter } from './useCounter.js'
 
-function Counter({ range }) {
-    const { min, max } = range
-    const { count, increment, decrement } = useCounter(0)
-
+function Counter({ increment, decrement, count = 0, range = {} }) {
+    const { min = 0, max = 5 } = range
     return (
         <div className={s.counter}>
-            <button onClick={increment} disabled={count <= min}>
+            <button onClick={decrement} disabled={count <= min}>
                 -
             </button>
-            <button onClick={decrement} disabled={count >= max}>
+            <button onClick={increment} disabled={count >= max}>
                 +
             </button>
             <span>{count}</span>

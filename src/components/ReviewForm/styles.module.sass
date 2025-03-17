@@ -1,0 +1,17 @@
+@import ../../assets/styles/sass/vars
+
+.form
+    padding: 2em
+    margin: 2em auto
+    +theme(light)
+    border-radius: $brs1
+    & > div
+        margin: $gap1 0
+    label, input, textarea
+        width: 100%
+    input, textarea
+        padding: $gap1 $gap2
+        margin: 4px 0
+    button
+        padding: $gap1 $gap2
+        +theme(dark)
