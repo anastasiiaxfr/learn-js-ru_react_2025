@@ -1,6 +1,7 @@
 import React from 'react'
 import Dish from '../Dish'
-import s from './styles.module.sass'
+import Review from '../Review'
+import s from '../styles.module.sass'
 
 function Card({ data }) {
     const { name, menu, reviews } = data
@@ -10,11 +11,7 @@ function Card({ data }) {
             <h3>Меню</h3>
             <Dish menu={menu} />
             <h3>Отзывы</h3>
-            <ul className={s.card_reviews}>
-                {reviews.map((review) => (
-                    <li key={review.id}>{review.text}</li>
-                ))}
-            </ul>
+            <Review reviews={reviews} />
         </article>
     )
 }

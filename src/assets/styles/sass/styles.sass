@@ -12,6 +12,7 @@ html, body, #root
     min-height: 100vh
     background: $light_1
     scroll-behavior: smooth
+    @extend %scroll
 
 header, footer
     padding: $gap2 0
@@ -34,10 +35,3 @@ header, footer
 section
     margin: $gap3 0
 
-.cards
-    display: grid
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))
-    gap: $gap3
-    @media screen and (max-width: 480px) 
-        grid-template-columns: 1fr
-  

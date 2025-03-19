@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 function Tags({ data, setCurrentTab, selected }) {
     return (
-        <div className={s.tags}>
+        <nav className={s.tags}>
             {data.map((tag) => (
                 <button
                     className={classNames(
@@ -17,7 +17,7 @@ function Tags({ data, setCurrentTab, selected }) {
                     {tag.name}
                 </button>
             ))}
-        </div>
+        </nav>
     )
 }
 
