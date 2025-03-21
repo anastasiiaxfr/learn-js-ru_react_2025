@@ -1,0 +1,8 @@
+@import ../../../assets/styles/sass/vars
+
+.cards
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))
+    gap: $gap3
+    @media screen and (max-width: 480px)
+        grid-template-columns: 1fr

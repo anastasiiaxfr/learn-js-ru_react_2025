@@ -1,0 +1,59 @@
+@import ../../../assets/styles/sass/vars
+
+$minBtnSz: 46px
+
+.btn
+    +flex(inline-flex, center, center, nowrap)
+    gap: $gap1
+    min-width: 200px
+    height: $minBtnSz
+    padding: 0.6em 1em
+    border: 2px solid transparent
+    border-radius: $brs0
+    transition: $trs
+    cursor: pointer
+    user-select: none
+    +ft(16, 16, 500)
+    letter-spacing: 0.03em
+    +theme(dark)
+    &:hover, &:active, &:focus
+        appearance: none
+        outline: none
+        +theme(main)
+    &.active
+        +theme(main)
+    &[disabled]
+        opacity: 0.5
+        cursor: not-allowed
+
+.btn
+    &_bg
+        +theme(main)
+    &_bd
+        background: none
+        border-color: $black
+        color: $black
+    &_brs
+        border-radius: 16pc
+    &_brsBd
+        @extend .btn_bd
+        border-radius: 16pc
+    &_brsBg
+        @extend .btn_bg
+        border-radius: 16pc
+    &_square
+        +sz($minBtnSz, $minBtnSz)
+        min-width: $minBtnSz
+        padding: 2px
+    &_squareBg
+        @extend .btn_bg, .btn_square
+    &_squareBd
+        @extend .btn_bd, .btn_square
+    &_circle
+        @extend .btn_square
+        border-radius: 50%
+    &_circleBg
+        @extend .btn_bg, .btn_circle
+    &_circleBd
+        @extend .btn_bd, .btn_circle
+        

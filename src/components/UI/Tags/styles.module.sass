@@ -1,4 +1,4 @@
-@import ../../assets/styles/sass/vars
+@import ../../../assets/styles/sass/vars
 
 .tags
     display: flex
@@ -19,8 +19,10 @@
     user-select: none
     +ft(14, 14*1.2, 500)
     cursor: pointer
+    :global(.dark) &
+        +theme(darken_2)
     &:hover
-        +theme(white)
+        +theme(light)
+    &.active
+        +theme(main)
 
-.active
-    +theme(main)
