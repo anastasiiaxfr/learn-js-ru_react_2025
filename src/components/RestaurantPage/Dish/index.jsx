@@ -1,10 +1,10 @@
 import React from 'react'
 import Counter from '../../Counter'
-import { useCounter } from '../../Counter/useCounter.js'
-import s from '../Card/styles.module.sass'
+import { useCount } from '../../Counter/useCount.js'
+import s from '../styles.module.sass'
 
 function Dish({ menu }) {
-    const { increment, decrement, count } = useCounter()
+    const { increment, decrement, count } = useCount()
 
     return (
         <ul className={s.card_list}>
@@ -15,7 +15,6 @@ function Dish({ menu }) {
                         increment={increment}
                         decrement={decrement}
                         count={count}
-                        key={id}
                     />
                 </li>
             ))}

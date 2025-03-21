@@ -1,30 +1,11 @@
 import { useState } from 'react'
+import s from './styles.module.sass'
 import Card from './Card'
 import Tags from '../Tags'
 import ReviwForm from '../ReviewForm'
-
-const defaultTab = {
-    id: 0,
-    name: 'All',
-}
-
-const countDishesRange = {
-    min: 0,
-    max: 5,
-}
+import { defaultTab, countDishesRange, allRestaurantCat } from './constants.js'
 
 function Restauraunt({ data }) {
-    const allRestaurantCat = [
-        ...new Set(
-            data
-                .filter((cat) => cat.name)
-                .map((cat) => ({
-                    id: cat.id,
-                    name: cat.name,
-                }))
-        ),
-    ]
-
     const [currentTab, setCurrentTab] = useState(defaultTab)
 
     const currentRestaraunt =
@@ -45,7 +26,7 @@ function Restauraunt({ data }) {
             </section>
             <section>
                 <div className="container">
-                    <div className="cards">
+                    <div className={s.cards}>
                         {currentRestaraunt.length ? (
                             currentRestaraunt.map((restaurant) => (
                                 <Card
@@ -59,7 +40,6 @@ function Restauraunt({ data }) {
                                 <div>
                                     <Card
                                         data={currentRestaraunt}
-                                        id={currentRestaraunt.id}
                                         countDishesRange={countDishesRange}
                                     />
                                     <ReviwForm />
