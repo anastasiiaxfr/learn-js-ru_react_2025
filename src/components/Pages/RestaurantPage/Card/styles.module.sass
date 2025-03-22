@@ -1,0 +1,17 @@
+@import ../../../../assets/styles/sass/vars
+
+.card
+    padding: $gap3
+    box-shadow: $bxsd
+    border-radius: $brs1
+    +theme(white)
+    transition: $trs
+    :global(.dark) &
+        +theme(darken_2)
+    &:hover
+        box-shadow: none
+        transform: translateY(-10px)
+    &_title
+        margin-top: 0
+        margin-bottom: $gap1
+

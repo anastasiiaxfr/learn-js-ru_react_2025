@@ -1,0 +1,28 @@
+@import ../../../assets/styles/sass/vars
+
+.tags
+    display: flex
+    align-items: center
+    justify-content: start
+    flex-wrap: wrap
+    gap: $gap2
+    margin: $gap2 auto
+
+.tag
+    +flex(flex, center, center, nowrap)
+    gap: $gap1
+    padding: 0.5em 1em
+    border-radius: 16pc
+    border: none
+    +theme(dark)
+    transition: $trs
+    user-select: none
+    +ft(14, 14*1.2, 500)
+    cursor: pointer
+    :global(.dark) &
+        +theme(darken_2)
+    &:hover
+        +theme(light)
+    &.active
+        +theme(main)
+

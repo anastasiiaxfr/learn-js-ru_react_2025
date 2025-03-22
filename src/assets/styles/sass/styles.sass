@@ -1,37 +1,8 @@
+@import root
 @import vars
+@import text
+@import base
+@import nav
 
-*
-    box-sizing: border-box
-    font-family: var(--ffBack)
 
-html, body, #root
-    margin: 0
-    padding: 0
-    display: flex
-    flex-direction: column
-    min-height: 100vh
-    background: $light_1
-    scroll-behavior: smooth
-    @extend %scroll
-
-header, footer
-    padding: $gap2 0
-    +theme(dark)
-    text-align: center
-
-.page
-    flex: 1
-    &_wrapper
-        display: flex
-        flex-direction: column
-        flex: 1
-
-.container
-    max-width: 1200px
-    padding: 0 $gap3
-    margin-left: auto
-    margin-right: auto
-
-section
-    margin: $gap3 0
 
