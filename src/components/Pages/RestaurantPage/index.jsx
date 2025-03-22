@@ -4,7 +4,7 @@ import AuthContext from '../../Context/AuthContext/constant.js';
 import s from './styles.module.sass';
 import Card from './Card';
 import Tags from '../../UI/Tags';
-import ReviwForm from '../../UI/Forms/ReviewForm';
+import ReviewForm from '../../UI/Forms/ReviewForm';
 import {defaultTab, allRestaurantCat} from '../../UI/Tags/constant.js';
 import {countDishesRange} from './Dish/constants.js';
 
@@ -46,7 +46,7 @@ function Restauraunt({data}) {
 										data={currentRestaraunt}
 										countDishesRange={countDishesRange}
 									/>
-									{isAuth && <ReviwForm />}
+									{isAuth && <ReviewForm />}
 								</div>
 							</>
 						)}

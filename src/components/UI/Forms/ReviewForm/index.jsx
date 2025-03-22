@@ -4,7 +4,7 @@ import {useForm} from './useForm.js';
 import Counter from '../../Counter/index.jsx';
 import Button from '../../Button/index.jsx';
 
-export default function ReviwForm() {
+export default function ReviewForm() {
 	const {
 		state,
 		onFormSubmit,

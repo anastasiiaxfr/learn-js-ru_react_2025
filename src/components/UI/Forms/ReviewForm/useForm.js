@@ -42,29 +42,24 @@ export function useForm() {
 
 	const handleInputChange = e => {
 		const {name, value} = e.target;
-		dispatch({type: 'SET_FIELD', field: name, value});
+		dispatch({type: SET_FIELD, field: name, value});
 	};
 
 	const onFormSubmit = () => {
 		if (!state.name || !state.review || state.count === 0) {
 			dispatch({
-				type: 'SET_ERROR',
+				type: SET_ERROR,
 				error: 'Please fill in all fields and set a valid rate.'
 			});
 		} else {
-			dispatch({type: 'SET_ERROR', error: ''});
-			console.log('Form submitted successfully', {
-				name: state.name,
-				review: state.review,
-				count: state.count
-			});
+			dispatch({type: SET_ERROR, error: ''});
 
-			dispatch({type: 'RESET_FORM'});
+			dispatch({type: RESET_FORM});
 		}
 	};
 
 	const onFormReset = () => {
-		dispatch({type: 'RESET_FORM'});
+		dispatch({type: RESET_FORM});
 	};
 
 	const isDisabled = !state.name && !state.review && state.count === 0;

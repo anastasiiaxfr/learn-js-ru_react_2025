@@ -10,7 +10,9 @@ export default function AuthToggle() {
 
 	const handleButtonClick = () => {
 		setShowModal(prev => !prev);
-		isAuth && toggleAuth();
+		if (isAuth) {
+			toggleAuth();
+		}
 	};
 
 	return (

@@ -34,8 +34,8 @@ export default function useLoginForm() {
 		const user = authData.find(user => user.email === formData.email);
 
 		if (user) {
-			setUser(formData.email);
 			toggleAuth();
+			setUser(formData.email);
 		} else {
 			setError('Email not found.');
 		}

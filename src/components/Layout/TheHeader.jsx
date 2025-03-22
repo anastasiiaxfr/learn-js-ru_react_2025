@@ -2,6 +2,7 @@ import {use} from 'react';
 import AuthContext from '../Context/AuthContext/constant';
 import ThemeSwithcer from '../UI/ThemeSwitcher';
 import AuthToggle from '../Auth/AuthToggler';
+import UserAva from '../User/UserAva';
 
 function Header() {
 	const {userEmail} = use(AuthContext);
@@ -13,7 +14,7 @@ function Header() {
 						TheLogo
 					</a>
 					<div className="btns">
-						{userEmail && <b className="">{userEmail}</b>}
+						<UserAva userEmail={userEmail} />
 						<ThemeSwithcer />
 						<AuthToggle />
 					</div>

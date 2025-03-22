@@ -5,31 +5,37 @@ import LoginForm from '../UI/Forms/LoginForm';
 import RegisterForm from '../UI/Forms/RegisterForm';
 
 export default function AuthForms() {
-	const [isActive, setIsActive] = useState(true);
+	const [isTabActive, setIsTabActive] = useState(true);
 
 	return (
 		<div className={s.auth}>
 			<div className={s.auth_header}>
-				<Button onClick={() => setIsActive(true)} isActive={isActive}>
+				<Button
+					onClick={() => setIsTabActive(true)}
+					isActive={isTabActive}
+				>
 					Register
 				</Button>
 
-				<Button onClick={() => setIsActive(false)} isActive={!isActive}>
+				<Button
+					onClick={() => setIsTabActive(false)}
+					isActive={!isTabActive}
+				>
 					Login
 				</Button>
 			</div>
 
 			<div className={s.auth_body}>
-				{isActive && (
+				{isTabActive && (
 					<>
-						<h1>Register</h1>
+						<h2>Register</h2>
 						<RegisterForm />
 					</>
 				)}
 
-				{!isActive && (
+				{!isTabActive && (
 					<>
-						<h1>Log In</h1>
+						<h2>Log In</h2>
 						<LoginForm />
 					</>
 				)}
