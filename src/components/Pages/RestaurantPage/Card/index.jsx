@@ -1,4 +1,3 @@
-import React from 'react';
 import Dish from '../Dish';
 import Review from '../Review';
 import s from './styles.module.sass';

@@ -10,7 +10,7 @@ export default function ThemeSwitcher() {
 	return (
 		<Button
 			onClick={toggleTheme}
-			style="squareBg"
+			style="squareBd"
 			title={theme === 'light' ? 'day theme' : 'night theme'}
 		>
 			{theme === 'light' ? (
