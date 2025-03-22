@@ -1,8 +1,8 @@
-import s from './styles.module.sass';
+import s from '../styles.module.sass';
 import {useForm} from './useForm.js';
 
-import Counter from '../Counter/index.jsx';
-import Button from '../Button/index.jsx';
+import Counter from '../../Counter/index.jsx';
+import Button from '../../Button/index.jsx';
 
 export default function ReviwForm() {
 	const {
