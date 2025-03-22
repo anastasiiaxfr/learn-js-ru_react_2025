@@ -1,24 +1,53 @@
-import {useState} from 'react';
+import {useReducer} from 'react';
 import AuthContext from './constant';
 
-const AuthProvider = ({children}) => {
-	const [isAuth, setAuth] = useState(false);
-	const [userEmail, setUserEmail] = useState('');
+const initialState = {
+	isAuth: false,
+	userEmail: ''
+};
 
-	const toggleAuth = () => {
-		setAuth(prev => !prev);
-		if (isAuth) {
-			setUserEmail('');
-		}
+const authReducer = (state, action) => {
+	switch (action.type) {
+		case 'LOGIN':
+			return {
+				...state,
+				isAuth: true,
+				userEmail: action.email
+			};
+		case 'LOGOUT':
+			return {
+				...state,
+				isAuth: false,
+				userEmail: ''
+			};
+		case 'REGISTER':
+			return {
+				...state,
+				isAuth: true,
+				userEmail: action.email
+			};
+		default:
+			return state;
+	}
+};
+
+const AuthProvider = ({children}) => {
+	const [state, dispatch] = useReducer(authReducer, initialState);
+
+	const login = email => {
+		dispatch({type: 'LOGIN', email});
 	};
 
-	const setUser = email => {
-		setUserEmail(email);
-		setAuth(true);
+	const logout = () => {
+		dispatch({type: 'LOGOUT'});
+	};
+
+	const register = email => {
+		dispatch({type: 'REGISTER', email});
 	};
 
 	return (
-		<AuthContext value={{isAuth, toggleAuth, userEmail, setUser}}>
+		<AuthContext value={{...state, login, logout, register}}>
 			{children}
 		</AuthContext>
 	);

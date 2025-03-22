@@ -1,6 +1,6 @@
-import {use, useState} from 'react';
-import AuthContext from '../../../Context/AuthContext/constant.js';
-import authData from '../../../Auth/authData.js';
+import {useState, useContext} from 'react';
+import AuthContext from '../../../Context/AuthContext/constant';
+import authData from '../../../Auth/authData';
 
 export const initialData = {
 	name: '',
@@ -9,8 +9,7 @@ export const initialData = {
 };
 
 export default function useRegForm() {
-	const {toggleAuth, setUser} = use(AuthContext);
-
+	const {register} = useContext(AuthContext);
 	const [formData, setFormData] = useState(initialData);
 	const [error, setError] = useState('');
 
@@ -47,10 +46,9 @@ export default function useRegForm() {
 			email: formData.email
 		});
 
-		toggleAuth();
-		setUser(formData.email);
+		register(formData.email);
 		setFormData(initialData);
 	};
 
-	return {onFormSubmit, error, handleInputChange, formData};
+	return {formData, error, onFormSubmit, handleInputChange};
 }
