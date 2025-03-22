@@ -4,7 +4,7 @@ import Button from '../UI/Button';
 import LoginForm from '../UI/Forms/LoginForm';
 import RegisterForm from '../UI/Forms/RegisterForm';
 
-export default function AuthForms({setShowModal}) {
+export default function AuthForms() {
 	const [isActive, setIsActive] = useState(true);
 
 	return (
@@ -23,14 +23,14 @@ export default function AuthForms({setShowModal}) {
 				{isActive && (
 					<>
 						<h1>Register</h1>
-						<RegisterForm onClick={() => setShowModal(false)} />
+						<RegisterForm />
 					</>
 				)}
 
 				{!isActive && (
 					<>
 						<h1>Log In</h1>
-						<LoginForm onClick={() => setShowModal(false)} />
+						<LoginForm />
 					</>
 				)}
 			</div>

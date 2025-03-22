@@ -1,11 +1,9 @@
 import s from '../styles.module.sass';
-
 import Button from '../../Button/index.jsx';
+import useLoginForm from './useLoginForm.js';
 
-export default function LoginForm({onClick}) {
-	const onFormSubmit = () => {
-		onClick();
-	};
+export default function LoginForm() {
+	const {error, onFormSubmit, handleInputChange, formData} = useLoginForm();
 
 	return (
 		<form
@@ -13,7 +11,7 @@ export default function LoginForm({onClick}) {
 			method="POST"
 			noValidate
 			className={s.form}
-			onSubmit={e => e.preventDefault()}
+			onSubmit={onFormSubmit}
 		>
 			<div>
 				<label htmlFor="email">Email</label>
@@ -21,8 +19,8 @@ export default function LoginForm({onClick}) {
 					type="email"
 					id="email"
 					name="email"
-					value=""
-					onChange={() => {}}
+					value={formData.email}
+					onChange={handleInputChange}
 					required
 				/>
 			</div>
@@ -32,16 +30,14 @@ export default function LoginForm({onClick}) {
 					type="password"
 					id="password"
 					name="password"
-					value=""
-					onChange={() => {}}
+					value={formData.password}
+					onChange={handleInputChange}
 					required
 				/>
 			</div>
-
-			{/* {error && <div className={s.error}>{error}</div>} */}
-
+			{error && <div className={s.error}>{error}</div>}
 			<div className={s.btns}>
-				<Button onClick={onFormSubmit}>Send</Button>
+				<Button type="submit">Send</Button>
 			</div>
 		</form>
 	);

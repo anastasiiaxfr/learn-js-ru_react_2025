@@ -1,10 +1,12 @@
 import s from '../styles.module.sass';
-
 import Button from '../../Button/index.jsx';
+import useRegForm from './useRegForm.js';
 
-export default function RegisterForm({onClick}) {
-	const onFormSubmit = () => {
-		onClick();
+export default function RegisterForm() {
+	const {onFormSubmit, error, handleInputChange, formData} = useRegForm();
+
+	const handleSubmit = e => {
+		onFormSubmit(e);
 	};
 
 	return (
@@ -13,7 +15,7 @@ export default function RegisterForm({onClick}) {
 			method="POST"
 			noValidate
 			className={s.form}
-			onSubmit={e => e.preventDefault()}
+			onSubmit={handleSubmit}
 		>
 			<div>
 				<label htmlFor="name">Name</label>
@@ -21,8 +23,8 @@ export default function RegisterForm({onClick}) {
 					type="text"
 					id="name"
 					name="name"
-					value=""
-					onChange={() => {}}
+					value={formData.name}
+					onChange={handleInputChange}
 					required
 				/>
 			</div>
@@ -32,8 +34,8 @@ export default function RegisterForm({onClick}) {
 					type="email"
 					id="email"
 					name="email"
-					value=""
-					onChange={() => {}}
+					value={formData.email}
+					onChange={handleInputChange}
 					required
 				/>
 			</div>
@@ -43,16 +45,14 @@ export default function RegisterForm({onClick}) {
 					type="password"
 					id="password"
 					name="password"
-					value=""
-					onChange={() => {}}
+					value={formData.password}
+					onChange={handleInputChange}
 					required
 				/>
 			</div>
-
-			{/* {error && <div className={s.error}>{error}</div>} */}
-
+			{error && <div className={s.error}>{error}</div>}
 			<div className={s.btns}>
-				<Button onClick={onFormSubmit}>Send</Button>
+				<Button type="submit">Send</Button>
 			</div>
 		</form>
 	);

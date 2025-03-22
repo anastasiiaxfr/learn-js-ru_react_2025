@@ -9,8 +9,8 @@ export default function AuthToggle() {
 	const [showModal, setShowModal] = useState(false);
 
 	const handleButtonClick = () => {
-		toggleAuth();
 		setShowModal(prev => !prev);
+		isAuth && toggleAuth();
 	};
 
 	return (
@@ -18,11 +18,12 @@ export default function AuthToggle() {
 			<Button style="bg" onClick={handleButtonClick}>
 				{isAuth ? 'Sign Out' : 'Sign In'}
 			</Button>
-			{showModal && (
-				<Modal setShowModal={setShowModal}>
-					<Auth setShowModal={setShowModal} />
-				</Modal>
-			)}
+			{isAuth ||
+				(showModal && (
+					<Modal setShowModal={setShowModal}>
+						<Auth />
+					</Modal>
+				))}
 		</>
 	);
 }
