@@ -1,6 +1,7 @@
-import {useState, useContext} from 'react';
-import AuthContext from '../../../Context/AuthContext/constant';
-import authData from '../../../Auth/authData';
+import {useContext} from 'react';
+import AuthContext from '../../../Context/AuthContext/constant.js';
+import authData from '../../../Auth/authData.js';
+import useFormReducer from '../useAuthForm.js';
 
 export const initialData = {
 	name: '',
@@ -8,17 +9,13 @@ export const initialData = {
 	password: ''
 };
 
-export default function useRegForm() {
+export default function useRegistrationForm() {
 	const {register} = useContext(AuthContext);
-	const [formData, setFormData] = useState(initialData);
-	const [error, setError] = useState('');
+	const {formData, error, setField, setError, resetForm} = useFormReducer();
 
 	const handleInputChange = e => {
 		const {name, value} = e.target;
-		setFormData(prevState => ({
-			...prevState,
-			[name]: value
-		}));
+		setField(name, value);
 	};
 
 	const onFormSubmit = e => {
@@ -31,13 +28,10 @@ export default function useRegForm() {
 
 		setError('');
 
-		const userExists = authData.some(
-			user => user.name === formData.name && user.email === formData.email
-		);
+		const userExists = authData.some(user => user.email === formData.email);
 
 		if (userExists) {
 			setError('This user is already registered.');
-			setFormData(initialData);
 			return;
 		}
 
@@ -47,7 +41,7 @@ export default function useRegForm() {
 		});
 
 		register(formData.email);
-		setFormData(initialData);
+		resetForm();
 	};
 
 	return {formData, error, onFormSubmit, handleInputChange};

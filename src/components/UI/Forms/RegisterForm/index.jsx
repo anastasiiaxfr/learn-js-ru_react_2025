@@ -1,9 +1,14 @@
 import s from '../styles.module.sass';
 import Button from '../../Button/index.jsx';
-import useRegForm from './useRegForm.js';
+import useRegistrationForm from './useRegistrationForm.js';
 
 export default function RegisterForm() {
-	const {onFormSubmit, error, handleInputChange, formData} = useRegForm();
+	const {
+		onFormSubmit,
+		error,
+		handleInputChange,
+		formData
+	} = useRegistrationForm();
 
 	const handleSubmit = e => {
 		onFormSubmit(e);

@@ -6,21 +6,25 @@ const initialState = {
 	userEmail: ''
 };
 
+const LOGIN = 'LOGIN';
+const LOGOUT = 'LOGOUT';
+const REGISTER = 'REGISTER';
+
 const authReducer = (state, action) => {
 	switch (action.type) {
-		case 'LOGIN':
+		case LOGIN:
 			return {
 				...state,
 				isAuth: true,
 				userEmail: action.email
 			};
-		case 'LOGOUT':
+		case LOGOUT:
 			return {
 				...state,
 				isAuth: false,
 				userEmail: ''
 			};
-		case 'REGISTER':
+		case REGISTER:
 			return {
 				...state,
 				isAuth: true,
@@ -35,15 +39,15 @@ const AuthProvider = ({children}) => {
 	const [state, dispatch] = useReducer(authReducer, initialState);
 
 	const login = email => {
-		dispatch({type: 'LOGIN', email});
+		dispatch({type: LOGIN, email});
 	};
 
 	const logout = () => {
-		dispatch({type: 'LOGOUT'});
+		dispatch({type: LOGOUT});
 	};
 
 	const register = email => {
-		dispatch({type: 'REGISTER', email});
+		dispatch({type: REGISTER, email});
 	};
 
 	return (

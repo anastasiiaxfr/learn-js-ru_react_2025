@@ -1,6 +1,7 @@
-import {useState, useContext} from 'react';
-import AuthContext from '../../../Context/AuthContext/constant';
-import authData from '../../../Auth/authData';
+import {useContext} from 'react';
+import AuthContext from '../../../Context/AuthContext/constant.js';
+import authData from '../../../Auth/authData.js';
+import useFormReducer from '../useAuthForm';
 
 export const initialData = {
 	email: '',
@@ -9,15 +10,11 @@ export const initialData = {
 
 export default function useLoginForm() {
 	const {login} = useContext(AuthContext);
-	const [formData, setFormData] = useState(initialData);
-	const [error, setError] = useState('');
+	const {formData, error, setField, setError, resetForm} = useFormReducer();
 
 	const handleInputChange = e => {
 		const {name, value} = e.target;
-		setFormData(prevState => ({
-			...prevState,
-			[name]: value
-		}));
+		setField(name, value);
 	};
 
 	const onFormSubmit = e => {
@@ -34,11 +31,10 @@ export default function useLoginForm() {
 
 		if (user) {
 			login(formData.email);
+			resetForm();
 		} else {
 			setError('Email not found.');
 		}
-
-		setFormData(initialData);
 	};
 
 	return {formData, error, onFormSubmit, handleInputChange};
