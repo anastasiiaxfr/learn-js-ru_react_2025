@@ -1,21 +1,15 @@
-import {use} from 'react';
 import {useState} from 'react';
-import AuthContext from '../../Context/AuthContext/constant.js';
-import s from './styles.module.sass';
-import Card from './Card';
 import Tags from '../../UI/Tags';
-import ReviewForm from '../../UI/Forms/ReviewForm';
 import {defaultTab, allRestaurantCat} from '../../UI/Tags/constant.js';
-import {countDishesRange} from './Dish/constants.js';
+import Cards from './Cards/index.jsx';
 
 function Restauraunt({data}) {
-	const {isAuth} = use(AuthContext);
 	const [currentTab, setCurrentTab] = useState(defaultTab);
 
 	const currentRestaraunt =
 		currentTab.name === 'All'
 			? data
-			: data.find(restaurant => restaurant.id === currentTab.id);
+			: data.find((restaurant) => restaurant.id === currentTab.id);
 
 	return (
 		<>
@@ -30,27 +24,7 @@ function Restauraunt({data}) {
 			</section>
 			<section>
 				<div className="container">
-					<div className={s.cards}>
-						{currentRestaraunt.length ? (
-							currentRestaraunt.map(restaurant => (
-								<Card
-									data={restaurant}
-									key={restaurant.id}
-									countDishesRange={countDishesRange}
-								/>
-							))
-						) : (
-							<>
-								<div>
-									<Card
-										data={currentRestaraunt}
-										countDishesRange={countDishesRange}
-									/>
-									{isAuth && <ReviewForm />}
-								</div>
-							</>
-						)}
-					</div>
+					<Cards data={currentRestaraunt} />
 				</div>
 			</section>
 		</>
