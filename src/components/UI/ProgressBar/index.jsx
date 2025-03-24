@@ -6,7 +6,10 @@ const ProgressBar = () => {
 
 	return (
 		<div className={s.progress_bar}>
-			<div className={s.progress_thumb} style={{width: `${scrollSize}%`}} />
+			<div
+				className={s.progress_thumb}
+				style={{width: `${scrollSize}%`}}
+			/>
 		</div>
 	);
 };
