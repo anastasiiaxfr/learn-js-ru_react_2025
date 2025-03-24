@@ -3,16 +3,8 @@ import Button from '../../Button/index.jsx';
 import useRegistrationForm from './useRegistrationForm.js';
 
 export default function RegisterForm() {
-	const {
-		onFormSubmit,
-		error,
-		handleInputChange,
-		formData
-	} = useRegistrationForm();
-
-	const handleSubmit = e => {
-		onFormSubmit(e);
-	};
+	const {onFormSubmit, error, handleInputChange, formData} =
+		useRegistrationForm();
 
 	return (
 		<form
@@ -20,7 +12,7 @@ export default function RegisterForm() {
 			method="POST"
 			noValidate
 			className={s.form}
-			onSubmit={handleSubmit}
+			onSubmit={(e) => onFormSubmit(e)}
 		>
 			<div>
 				<label htmlFor="name">Name</label>

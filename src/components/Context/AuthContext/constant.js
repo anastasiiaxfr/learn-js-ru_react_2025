@@ -1,7 +1,8 @@
 import {createContext} from 'react';
 
 const AuthContext = createContext({
-	isAuth: false
+	isAuth: false,
+	userEmail: ''
 });
 
 export default AuthContext;

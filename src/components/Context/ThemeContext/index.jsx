@@ -8,11 +8,7 @@ const ThemeProvider = ({children}) => {
 		theme === 'dark' ? setTheme('light') : setTheme('dark');
 	};
 
-	return (
-		<ThemeContext.Provider value={{theme, toggleTheme}}>
-			{children}
-		</ThemeContext.Provider>
-	);
+	return <ThemeContext value={{theme, toggleTheme}}>{children}</ThemeContext>;
 };
 
 export default ThemeProvider;

@@ -31,7 +31,7 @@ const formReducer = (state, action) => {
 	}
 };
 
-const useFormReducer = () => {
+const useAuthForm = () => {
 	const [state, dispatch] = useReducer(formReducer, initialState);
 
 	const setField = (field, value) => {
@@ -55,4 +55,4 @@ const useFormReducer = () => {
 	};
 };
 
-export default useFormReducer;
+export default useAuthForm;

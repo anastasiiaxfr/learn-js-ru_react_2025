@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import AuthContext from '../../../Context/AuthContext/constant.js';
 import authData from '../../../Auth/authData.js';
-import useFormReducer from '../useAuthForm.js';
+import useAuthForm from '../useAuthForm.js';
 
 export const initialData = {
 	name: '',
@@ -11,7 +11,7 @@ export const initialData = {
 
 export default function useRegistrationForm() {
 	const {register} = useContext(AuthContext);
-	const {formData, error, setField, setError, resetForm} = useFormReducer();
+	const {formData, error, setField, setError, resetForm} = useAuthForm();
 
 	const handleInputChange = e => {
 		const {name, value} = e.target;
