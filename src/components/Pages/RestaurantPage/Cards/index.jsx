@@ -12,12 +12,10 @@ function Cards({data}) {
 			{data.length ? (
 				data.map((restaurant) => <Card data={restaurant} key={restaurant.id} />)
 			) : (
-				<>
-					<div>
-						<Card data={data} />
-						{isAuth && <ReviewForm />}
-					</div>
-				</>
+				<div>
+					<Card data={data} />
+					{isAuth && <ReviewForm />}
+				</div>
 			)}
 		</div>
 	);

@@ -26,14 +26,12 @@ export default function AuthForms() {
 			</div>
 
 			<div className={s.auth_body}>
-				{isRegisterSelected && (
+				{isRegisterSelected ? (
 					<>
 						<h2>Register</h2>
 						<RegisterForm />
 					</>
-				)}
-
-				{!isRegisterSelected && (
+				) : (
 					<>
 						<h2>Log In</h2>
 						<LoginForm />

@@ -10,7 +10,7 @@ function Dish({menu}) {
 			{menu.map(({id, name}) => (
 				<li key={id}>
 					<span>{name}</span>
-					{isAuth && <Counter id={id} />}
+					{isAuth && <Counter />}
 				</li>
 			))}
 		</ul>

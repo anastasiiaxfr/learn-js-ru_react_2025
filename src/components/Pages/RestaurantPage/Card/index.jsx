@@ -1,4 +1,4 @@
-import Dish from '../Dish';
+import Dishes from '../Dishes';
 import Review from '../Review';
 import s from './styles.module.sass';
 
@@ -11,7 +11,7 @@ function Card({data}) {
 			{menu.length > 0 && (
 				<>
 					<h3>Меню</h3>
-					<Dish menu={menu} />
+					<Dishes menu={menu} />
 				</>
 			)}
 
