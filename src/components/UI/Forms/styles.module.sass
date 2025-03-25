@@ -1,0 +1,29 @@
+@import ../../../assets/styles/sass/vars
+
+.form
+    padding: 2em
+    margin: 2em auto
+    +theme(white)
+    border-radius: $brs1
+    :global(.dark) &
+        +theme(darken_2)
+    & > div
+        margin: $gap1 0
+    label, input, textarea
+        width: 100%
+    input, textarea
+        padding: $gap1 $gap2
+        margin: 8px 0 4px
+        resize: none
+        border-radius: $brs0
+        border: 2px solid var(--bdc)
+        :global(.dark) &
+            background: rgba($black, 0.15)
+            color: $white
+    .error
+        color: var(--color-red)
+        font-weight: 500
+    & .btns
+        +flex(flex, center, start, wrap)
+        gap: $gap1
+        margin-top: $gap3
