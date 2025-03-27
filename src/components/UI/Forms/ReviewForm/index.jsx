@@ -12,7 +12,7 @@ export default function ReviewForm() {
 		handleInputChange,
 		increment,
 		decrement,
-		isDisabled
+		isDisabled,
 	} = useForm();
 
 	return (
@@ -21,7 +21,7 @@ export default function ReviewForm() {
 			method="GET"
 			noValidate
 			className={s.form}
-			onSubmit={e => e.preventDefault()}
+			onSubmit={(e) => e.preventDefault()}
 		>
 			<div>
 				<label htmlFor="name">Name</label>

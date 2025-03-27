@@ -1,19 +1,24 @@
-import React from 'react';
+import {useSelector} from 'react-redux';
 import s from './styles.module.sass';
 import classNames from 'classnames';
 
-function Tags({data, setCurrentTab, selected}) {
+function Tags({data, onClick, selected, setData}) {
+	const tagName = useSelector((state) => (tag) => {
+		const {name} = setData(state, tag);
+		return name;
+	});
+
 	return (
 		<nav className={s.tags}>
-			{data.map(tag => (
+			{data.map((tag) => (
 				<button
 					className={classNames(s.tag, {
-						[s.active]: tag.name === selected.name
+						[s.active]: tag === selected,
 					})}
-					key={tag.id}
-					onClick={() => setCurrentTab(tag)}
+					key={tag}
+					onClick={() => onClick(tag)}
 				>
-					{tag.name}
+					{tagName(tag)}
 				</button>
 			))}
 		</nav>

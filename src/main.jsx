@@ -1,11 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './assets/styles/sass/styles.sass'
-import { restaurants } from './mock.js'
+import {StrictMode} from 'react';
+import {createRoot} from 'react-dom/client';
+import App from './App.jsx';
+import './assets/styles/sass/styles.sass';
 
 createRoot(document.getElementById('root')).render(
-    <StrictMode>
-        <App data={restaurants} />
-    </StrictMode>
-)
+	<StrictMode>
+		<App />
+	</StrictMode>
+);
