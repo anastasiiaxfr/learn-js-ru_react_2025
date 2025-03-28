@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
 	}
 });
 
-export const { selectAmountByDishId, } = cartSlice.selectors;
+export const {selectAmountByDishId, } = cartSlice.selectors;
 
 export const { addToCart, removeFromCart } = cartSlice.actions;
 
@@ -36,11 +36,11 @@ export const selectCartItemsIds = createSelector([selectCartSlice], (cart) => Ob
 
 export const selectTotalSum = createSelector([selectCartSlice], (cart) => {
 	return Object.keys(cart).reduce((total, id) => {
-		const amount = cart[id];
-		const dish = normalizedDishes.find((dish) => dish.id === id);
-		if (dish) {
-			total += dish.price * amount;
-		}
-		return total;
+	  const amount = cart[id];
+	  const dish = normalizedDishes.find((dish) => dish.id === id);
+	  if (dish) {
+		total += dish.price * amount;
+	  }
+	  return total;
 	}, 0);
-});
+  });
