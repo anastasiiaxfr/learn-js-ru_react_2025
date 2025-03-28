@@ -1,0 +1,15 @@
+@import ../../../../assets/styles/sass/vars
+
+.orders
+    margin: $gap2 auto 0
+    padding: $gap3
+    +theme(white)
+    border-radius: $brs1
+    :global(.dark) &
+        +theme(darken_2)
+    &_list
+        li
+            margin: $gap1 0
+    hr
+        opacity: 0.2
+        
