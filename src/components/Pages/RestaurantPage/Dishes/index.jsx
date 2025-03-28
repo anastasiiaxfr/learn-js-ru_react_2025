@@ -2,11 +2,11 @@ import DishList from './Dish';
 
 import s from './styles.module.sass';
 
-function Dish({menu, resId}) {
+function Dish({menu, restaurantId}) {
 	return (
 		<ul className={s.list}>
-			{menu.map((dish) => (
-				<DishList id={dish} resId={resId} key={`dish-${dish}`} />
+			{menu.map((dishId) => (
+				<DishList id={dishId} restaurantId={restaurantId} key={dishId} />
 			))}
 		</ul>
 	);

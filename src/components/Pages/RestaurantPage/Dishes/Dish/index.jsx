@@ -4,7 +4,7 @@ import AuthContext from '../../../../Context/AuthContext/constant';
 import {selectDishById} from '../../../../../redux/entities/dishes/slice';
 import Counter from '../Counter';
 
-function Dish({id, resId}) {
+function Dish({id, restaurantId}) {
 	const {isAuth} = use(AuthContext);
 	const {name, price} = useSelector((state) => selectDishById(state, id));
 
@@ -13,7 +13,7 @@ function Dish({id, resId}) {
 			<span>
 				{name}: <b>{price} usd</b>
 			</span>
-			{isAuth && <Counter id={id} resId={resId} />}
+			{isAuth && <Counter id={id} restaurantId={restaurantId} />}
 		</li>
 	);
 }

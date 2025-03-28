@@ -4,7 +4,7 @@ import {use} from 'react';
 import AuthContext from '../../Context/AuthContext/constant.js';
 
 import {selectRestaurantsIds} from '../../../redux/entities/restaurants/slice.js';
-import {selectRestaurantById} from '../../../redux/entities/restaurants/slice.js';
+
 import Card from './Card/index.jsx';
 import Cart from './Cart/index.jsx';
 import ReviewForm from '../../UI/Forms/ReviewForm/index.jsx';
@@ -12,16 +12,12 @@ import ReviewForm from '../../UI/Forms/ReviewForm/index.jsx';
 import Tabs from '../../UI/Tabs/index.jsx';
 import Tags from './Tags';
 
-function Restauraunt() {
+function RestaurauntsPage() {
 	const {isAuth} = use(AuthContext);
 
 	const restaurantsIds = useSelector(selectRestaurantsIds);
 	const [activeRestaurantId, setActiveRestaurantId] = useState(
 		restaurantsIds[0]
-	);
-
-	const restaurant = useSelector((state) =>
-		selectRestaurantById(state, activeRestaurantId)
 	);
 
 	const handleSetActiveRestaurantId = (id) => {
@@ -52,7 +48,7 @@ function Restauraunt() {
 			{activeRestaurantId && (
 				<section>
 					<div className="container">
-						<Card data={restaurant} />
+						<Card restaurantId={activeRestaurantId} />
 						{isAuth && (
 							<>
 								<Cart />
@@ -70,4 +66,4 @@ function Restauraunt() {
 	);
 }
 
-export default Restauraunt;
+export default RestaurauntsPage;

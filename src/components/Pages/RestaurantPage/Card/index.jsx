@@ -1,9 +1,17 @@
+import {useSelector} from 'react-redux';
+
 import Dishes from '../Dishes';
 import Review from '../Review';
 import s from './styles.module.sass';
 
-function Card({data}) {
-	const {name, menu, reviews, id} = data;
+import {selectRestaurantById} from '../../../../redux/entities/restaurants/slice';
+
+function Card({restaurantId}) {
+	const restaurant = useSelector((state) =>
+		selectRestaurantById(state, restaurantId)
+	);
+
+	const {name, menu, reviews, id} = restaurant;
 	return (
 		<>
 			<article className={s.card}>
@@ -12,7 +20,7 @@ function Card({data}) {
 				{menu.length > 0 && (
 					<>
 						<h3>Меню</h3>
-						<Dishes menu={menu} resId={id} />
+						<Dishes menu={menu} restaurantId={id} />
 					</>
 				)}
 
