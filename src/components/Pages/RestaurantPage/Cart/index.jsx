@@ -8,20 +8,28 @@ import TotalSum from './TotalSum';
 const Cart = () => {
 	const items = useSelector(selectCartItemsIds);
 
-	return items.length > 0 ? (
+	return (
 		<>
 			<h2>Orders:</h2>
 			<div className={s.orders}>
 				<ul className={s.orders_list}>
-					{items.map((item) => (
-						<CartItem id={item} key={`order-${item}`} />
-					))}
+					{Object.keys(items).map((itemId) => {
+						const {restaurant} = items[itemId];
+
+						return (
+							<CartItem
+								id={itemId}
+								key={`order-${itemId}`}
+								restaurant={restaurant}
+							/>
+						);
+					})}
 				</ul>
 				<hr />
 				<TotalSum />
 			</div>
 		</>
-	) : null;
+	);
 };
 
 export default Cart;
