@@ -1,4 +1,4 @@
-import {useState, useCallback} from 'react';
+import {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {use} from 'react';
 import AuthContext from '../../Context/AuthContext/constant.js';
@@ -9,7 +9,8 @@ import Card from './Card/index.jsx';
 import Cart from './Cart/index.jsx';
 import ReviewForm from '../../UI/Forms/ReviewForm/index.jsx';
 
-import Tags from '../../UI/Tags';
+import Tabs from '../../UI/Tabs/index.jsx';
+import Tags from './Tags';
 
 function Restauraunt() {
 	const {isAuth} = use(AuthContext);
@@ -35,12 +36,16 @@ function Restauraunt() {
 		<>
 			<section>
 				<div className="container">
-					<Tags
-						data={restaurantsIds}
-						setData={selectRestaurantById}
-						onClick={handleSetActiveRestaurantId}
-						selected={activeRestaurantId}
-					/>
+					<Tabs>
+						{restaurantsIds.map((id) => (
+							<Tags
+								key={id}
+								id={id}
+								onClick={() => handleSetActiveRestaurantId(id)}
+								isActive={id === activeRestaurantId}
+							/>
+						))}
+					</Tabs>
 				</div>
 			</section>
 
@@ -50,10 +55,8 @@ function Restauraunt() {
 						<Card data={restaurant} />
 						{isAuth && (
 							<>
-								<div>
-									<h2>Orders:</h2>
-									<Cart />
-								</div>
+								<Cart />
+
 								<div>
 									<h2>Reviews:</h2>
 									<ReviewForm />
