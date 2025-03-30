@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 import {use} from 'react';
 import AuthContext from '../../../Context/AuthContext/constant';
 
->>>>>>> 0300512 (hw-8)
 import {useSelector} from 'react-redux';
 import {selectCartItemsIds} from '../../../../redux/entities/cart/slice';
 
@@ -13,8 +10,6 @@ import TotalSum from './TotalSum';
 
 const Cart = () => {
 	const items = useSelector(selectCartItemsIds);
-<<<<<<< HEAD
-=======
 	const {isAuth} = use(AuthContext);
 
 	if (!isAuth) {
@@ -24,18 +19,13 @@ const Cart = () => {
 			</p>
 		);
 	}
->>>>>>> 0300512 (hw-8)
 
 	return (
 		<>
 			<h2>Orders:</h2>
 			<div className={s.orders}>
 				<ul className={s.orders_list}>
-<<<<<<< HEAD
-					{Object.keys(items).map((itemId) => {
-=======
 					{Object.keys(items).map(itemId => {
->>>>>>> 0300512 (hw-8)
 						const {restaurant} = items[itemId];
 
 						return (

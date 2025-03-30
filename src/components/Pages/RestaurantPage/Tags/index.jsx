@@ -1,14 +1,4 @@
 import {useSelector} from 'react-redux';
-<<<<<<< HEAD
-import {selectRestaurantById} from '../../../../redux/entities/restaurants/slice.js';
-
-import Tab from '../../../UI/Tabs/Tab';
-
-function RestaurauntTags({id, onClick, isActive}) {
-	const restaurant = useSelector((state) => selectRestaurantById(state, id));
-
-	return <Tab name={restaurant.name} onClick={onClick} selected={isActive} />;
-=======
 import classNames from 'classnames';
 
 import {selectRestaurantById} from '../../../../redux/entities/restaurants/slice.js';
@@ -26,7 +16,6 @@ function RestaurauntTags({id}) {
 			{restaurant.name}
 		</NavLink>
 	);
->>>>>>> 0300512 (hw-8)
 }
 
 export default RestaurauntTags;

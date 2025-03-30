@@ -1,9 +1,4 @@
 import {Provider} from 'react-redux';
-<<<<<<< HEAD
-import {store} from './redux/store';
-import Layout from './components/Layout';
-import RestaurauntPage from './components/Pages/RestaurantPage';
-=======
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router';
 import {store} from './redux/store';
 import Layout from './components/Layout';
@@ -15,7 +10,6 @@ import RestarauntSinglePageMenu from './components/Pages/RestaurantPage/Restaura
 import RestarauntSinglePageReview from './components/Pages/RestaurantPage/RestaurantSinglePage/Review';
 import DishPage from './components/Pages/DishPage';
 import HomePage from './components/Pages/HomePage';
->>>>>>> 0300512 (hw-8)
 import ThemeProvider from './components/Context/ThemeContext';
 import AuthProvider from './components/Context/AuthContext';
 
@@ -24,11 +18,6 @@ function App() {
 		<Provider store={store}>
 			<ThemeProvider>
 				<AuthProvider>
-<<<<<<< HEAD
-					<Layout>
-						<RestaurauntPage />
-					</Layout>
-=======
 					<BrowserRouter>
 						<Routes>
 							<Route element={<Layout />}>
@@ -59,7 +48,6 @@ function App() {
 							<Route path="*" element={<Navigate to="/" replace />} />
 						</Routes>
 					</BrowserRouter>
->>>>>>> 0300512 (hw-8)
 				</AuthProvider>
 			</ThemeProvider>
 		</Provider>
