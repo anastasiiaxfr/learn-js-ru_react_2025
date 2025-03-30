@@ -9,7 +9,11 @@ export const store = configureStore({
 		[restaurantsSlice.name]: restaurantsSlice.reducer,
 		[dishesSlice.name]: dishesSlice.reducer,
 		[reviewsSlice.name]: reviewsSlice.reducer,
+<<<<<<< HEAD
     [cartSlice.name]: cartSlice.reducer,
     
+=======
+		[cartSlice.name]: cartSlice.reducer
+>>>>>>> 0300512 (hw-8)
 	}
 });
