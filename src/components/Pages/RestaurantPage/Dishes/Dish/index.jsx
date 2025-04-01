@@ -1,11 +1,9 @@
-import {use} from 'react';
 import {useSelector} from 'react-redux';
-import AuthContext from '../../../../Context/AuthContext/constant';
 import {selectDishById} from '../../../../../redux/entities/dishes/slice';
-import Counter from '../Counter';
+import {Link} from 'react-router';
+import {Outlet} from 'react-router-dom';
 
-function Dish({id, resId}) {
-	const {isAuth} = use(AuthContext);
+function Dish({id, restaurantId}) {
 	const {name, price} = useSelector((state) => selectDishById(state, id));
 
 	return (
@@ -13,7 +11,9 @@ function Dish({id, resId}) {
 			<span>
 				{name}: <b>{price} usd</b>
 			</span>
-			{isAuth && <Counter id={id} resId={resId} />}
+			&nbsp; &rarr; &nbsp;
+			<Link to={`/dish/${id}?res=${restaurantId}`}>Order</Link>
+			<Outlet />
 		</li>
 	);
 }

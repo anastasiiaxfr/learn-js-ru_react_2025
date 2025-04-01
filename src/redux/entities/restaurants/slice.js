@@ -16,13 +16,6 @@ export const restaurantsSlice = createSlice({
   selectors: {
     selectRestaurantById: (state, id) => state.entities[id],
     selectRestaurantsIds: (state) => state.ids,
-    selectRestaurantByDishId: (state, dishId) => {
-      const restaurant = normalizedRestaurants.find((restaurant) =>
-        restaurant.menu.includes(dishId)
-      );
-
-      return restaurant ? restaurant.name : null;
-    },
   },
 });
 

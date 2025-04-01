@@ -12,7 +12,7 @@ function Card({data}) {
 				{menu.length > 0 && (
 					<>
 						<h3>Меню</h3>
-						<Dishes menu={menu} resId={id} />
+						<Dishes menu={menu} restaurantId={id} />
 					</>
 				)}
 
