@@ -1,17 +1,12 @@
-import {use} from 'react';
-import AuthContext from '../../../Context/AuthContext/constant';
-import Counter from './Counter';
+import DishList from './Dish';
+
 import s from './styles.module.sass';
 
-function Dish({menu}) {
-	const {isAuth} = use(AuthContext);
+function Dish({menu, restaurantId}) {
 	return (
 		<ul className={s.list}>
-			{menu.map(({id, name}) => (
-				<li key={id}>
-					<span>{name}</span>
-					{isAuth && <Counter />}
-				</li>
+			{menu.map((dishId) => (
+				<DishList id={dishId} restaurantId={restaurantId} key={dishId} />
 			))}
 		</ul>
 	);

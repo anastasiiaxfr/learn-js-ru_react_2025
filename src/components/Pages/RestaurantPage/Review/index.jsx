@@ -1,10 +1,10 @@
-import React from 'react';
+import ReviewListItem from './ReviewListItem';
 
 function ReviewRestaurant({reviews}) {
 	return (
-		<ul className="">
-			{reviews.map(({id, text}) => (
-				<li key={id}>{text}</li>
+		<ul>
+			{reviews.map((id) => (
+				<ReviewListItem id={id} key={id} />
 			))}
 		</ul>
 	);
