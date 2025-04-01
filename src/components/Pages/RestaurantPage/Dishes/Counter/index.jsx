@@ -1,4 +1,3 @@
-// import useCount from '../../../../UI/Counter/useCount';
 import useCount from './useCount';
 
 import Counter from '../../../../UI/Counter';

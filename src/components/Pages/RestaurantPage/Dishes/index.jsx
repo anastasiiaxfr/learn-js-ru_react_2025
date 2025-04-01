@@ -5,8 +5,8 @@ import s from './styles.module.sass';
 function Dish({menu, restaurantId}) {
 	return (
 		<ul className={s.list}>
-			{menu.map((dish) => (
-				<DishList id={dish} restaurantId={restaurantId} key={dish} />
+			{menu.map((dishId) => (
+				<DishList id={dishId} restaurantId={restaurantId} key={dishId} />
 			))}
 		</ul>
 	);

@@ -6,7 +6,7 @@ import {selectRestaurantsIds} from '../../../redux/entities/restaurants/slice.js
 import Tabs from '../../UI/Tabs/index.jsx';
 import Tags from './Tags';
 
-function Restauraunt() {
+function RestaurauntsPage() {
 	const restaurantsIds = useSelector(selectRestaurantsIds);
 
 	return (
@@ -26,4 +26,4 @@ function Restauraunt() {
 	);
 }
 
-export default Restauraunt;
+export default RestaurauntsPage;

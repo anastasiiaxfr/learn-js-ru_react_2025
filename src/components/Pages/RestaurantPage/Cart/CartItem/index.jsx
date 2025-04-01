@@ -7,13 +7,13 @@ import {selectRestaurantById} from '../../../../../redux/entities/restaurants/sl
 
 import Counter from '../../Dishes/Counter';
 
-function CartItem({id, restaurant, as: Component = 'li'}) {
+function CartItem({id, restaurantId, as: Component = 'li'}) {
 	const amount = useSelector((state) => selectAmountByDishId(state, {id}));
 
 	const dish = useSelector((state) => selectDishById(state, id));
 
 	const restaurantName = useSelector((state) =>
-		selectRestaurantById(state, restaurant)
+		selectRestaurantById(state, restaurantId)
 	);
 
 	return (

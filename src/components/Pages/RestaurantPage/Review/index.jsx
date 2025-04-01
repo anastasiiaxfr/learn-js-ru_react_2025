@@ -1,10 +1,10 @@
-import ReviewList from './ReviewList';
+import ReviewListItem from './ReviewListItem';
 
 function ReviewRestaurant({reviews}) {
 	return (
-		<ul className="">
+		<ul>
 			{reviews.map((id) => (
-				<ReviewList id={id} key={id} />
+				<ReviewListItem id={id} key={id} />
 			))}
 		</ul>
 	);

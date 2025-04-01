@@ -1,6 +1,3 @@
-import {use} from 'react';
-import AuthContext from '../../../Context/AuthContext/constant';
-
 import {useSelector} from 'react-redux';
 import {selectCartItems} from '../../../../redux/entities/cart/slice';
 
@@ -10,30 +7,19 @@ import TotalSum from './TotalSum';
 
 const Cart = () => {
 	const items = useSelector(selectCartItems);
-	const {isAuth} = use(AuthContext);
-
-	if (!isAuth) {
-		return (
-			<p>
-				<b>Please authorize to order</b>
-			</p>
-		);
+	if (Object.keys(items).length <= 0) {
+		return;
 	}
-
 	return (
 		<>
 			<h2>Orders:</h2>
 			<div className={s.orders}>
 				<ul className={s.orders_list}>
 					{Object.keys(items).map((itemId) => {
-						const {restaurant} = items[itemId];
+						const {restaurantId} = items[itemId];
 
 						return (
-							<CartItem
-								id={itemId}
-								key={`order-${itemId}`}
-								restaurant={restaurant}
-							/>
+							<CartItem id={itemId} key={itemId} restaurantId={restaurantId} />
 						);
 					})}
 				</ul>
