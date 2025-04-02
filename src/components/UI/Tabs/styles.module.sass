@@ -17,12 +17,13 @@
     +theme(dark)
     transition: $trs
     user-select: none
-    +ft(14, 14*1.2, 500)
+    +ft(14, 14, 500)
+    text-decoration: none
     cursor: pointer
     :global(.dark) &
         +theme(darken_2)
     &:hover
         +theme(light)
-    &.active
+    &.active, &.isActive
         +theme(main)
 

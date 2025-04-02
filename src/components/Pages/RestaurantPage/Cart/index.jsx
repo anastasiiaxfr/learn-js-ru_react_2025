@@ -7,7 +7,9 @@ import TotalSum from './TotalSum';
 
 const Cart = () => {
 	const items = useSelector(selectCartItems);
-
+	if (Object.keys(items).length <= 0) {
+		return;
+	}
 	return (
 		<>
 			<h2>Orders:</h2>
@@ -17,11 +19,7 @@ const Cart = () => {
 						const {restaurantId} = items[itemId];
 
 						return (
-							<CartItem
-								id={itemId}
-								key={itemId}
-								restaurantId={restaurantId}
-							/>
+							<CartItem id={itemId} key={itemId} restaurantId={restaurantId} />
 						);
 					})}
 				</ul>
