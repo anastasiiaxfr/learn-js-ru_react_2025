@@ -1,11 +1,23 @@
 import {useSelector} from 'react-redux';
+import {useRequest} from '../../../../../redux/hooks/use-request';
+import {getUsers} from '../../../../../redux/entities/users/get-users.js';
 import {selectReviewById} from '../../../../../redux/entities/reviews/slice';
 import {selectUserById} from '../../../../../redux/entities/users/slice';
-
+import {IDLE, PENDING, REJECTED} from '../../../../../redux/constant.js';
 function ReviewList({id}) {
-	const review = useSelector((state) => selectReviewById(state, id));
+	const requestStatus = useRequest(getUsers);
 
-	const user = useSelector((state) => selectUserById(state, review.userId));
+	const review = useSelector(state => selectReviewById(state, id));
+
+	const user = useSelector(state => selectUserById(state, review.userId));
+
+	if (requestStatus === IDLE || requestStatus === PENDING) {
+		return 'loading User...';
+	}
+
+	if (requestStatus === REJECTED) {
+		return 'error';
+	}
 
 	return (
 		<li>
