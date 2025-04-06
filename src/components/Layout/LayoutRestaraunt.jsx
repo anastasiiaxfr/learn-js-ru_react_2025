@@ -6,10 +6,10 @@ import Header from './TheHeader';
 import Footer from './TheFooter';
 import ProgressBar from '../UI/ProgressBar';
 import Cart from '../Pages/RestaurantPage/Cart';
+import ReviewForm from '../UI/Forms/ReviewForm';
 
 const Layout = () => {
 	const {theme} = use(ThemeContext);
-	const {isAuth} = use(AuthContext);
 
 	return (
 		<div className={theme === 'dark' ? 'dark' : 'light'}>
@@ -18,11 +18,7 @@ const Layout = () => {
 				<ProgressBar />
 				<main className="page">
 					<Outlet />
-					{isAuth && (
-						<div className="container">
-							<Cart />
-						</div>
-					)}
+					
 				</main>
 			</div>
 			<Footer />

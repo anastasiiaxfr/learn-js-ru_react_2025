@@ -1,9 +1,7 @@
-import {useSelector} from 'react-redux';
 import {Link} from 'react-router';
-import {selectDishById} from '../../../../../redux/entities/dishes/slice';
 
-function Dish({id, restaurantId}) {
-	const {name, price} = useSelector(state => selectDishById(state, id));
+function Dish({data, restaurantId}) {
+	const {name, price, id} = data;
 
 	return (
 		<li>

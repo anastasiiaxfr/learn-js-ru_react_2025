@@ -1,29 +1,25 @@
 import {useOutletContext} from 'react-router-dom';
-import {useRequest} from '../../../../../redux/hooks/use-request.js';
-import {useSelector} from 'react-redux';
-import {getMenu} from '../../../../../redux/entities/dishes/get-menu.js';
-import {selectRestaurantMenuById} from '../../../../../redux/entities/dishes/slice';
+import {useGetDishesByRestaurantIdQuery} from '../../../../../redux/services/api';
 import Dishes from '../../Dishes';
-import {IDLE, PENDING, REJECTED} from '../../../../../redux/constant.js';
+
 function RestaurantMenu() {
 	const restaurantId = useOutletContext();
-	const requestStatus = useRequest(getMenu, restaurantId);
-	const menu = useSelector(state =>
-		selectRestaurantMenuById(state, restaurantId)
+	const {data, isLoading, isError} = useGetDishesByRestaurantIdQuery(
+		restaurantId
 	);
 
-	if (requestStatus === IDLE || requestStatus === PENDING) {
-		return 'loading Menu...';
+	if (isLoading) {
+		return 'loading...';
 	}
 
-	if (requestStatus === REJECTED) {
-		return 'error';
+	if (isError) {
+		return 'ERROR';
 	}
 
 	return (
 		<div>
 			<h2>Menu:</h2>
-			<Dishes menu={menu} restaurantId={restaurantId} />
+			<Dishes menu={data} restaurantId={restaurantId} />
 		</div>
 	);
 }

@@ -1,37 +1,40 @@
+import {use} from 'react';
 import {useParams, Outlet} from 'react-router-dom';
-import {useRequest} from '../../../../redux/hooks/use-request.js';
-import {useDispatch, useSelector} from 'react-redux';
-import {getRestaurant} from '../../../../redux/entities/restaurants/get-restaurant.js';
-import {selectRestaurantById} from '../../../../redux/entities/restaurants/slice';
+import {
+	useGetRestaurantByIdQuery,
+	useAddReviewMutation
+} from '../../../../redux/services/api.js';
+import AuthContext from '../../../Context/AuthContext/constant';
 import Tabs from '../../../UI/Tabs/index.jsx';
 import Tab from '../../../UI/Tabs/TabLink/index.jsx';
-import {IDLE, PENDING, REJECTED} from '../../../../redux/constant.js';
+import Cart from '../../../Pages/RestaurantPage/Cart';
+import ReviewForm from '../../../UI/Forms/ReviewForm';
+
 function RestarauntSinglePage() {
+	const {isAuth} = use(AuthContext);
+
 	const {restaurantId} = useParams();
-	const dispatch = useDispatch();
+	const {data, isLoading, isError} = useGetRestaurantByIdQuery(restaurantId);
 
-	const requestStatus = useRequest(getRestaurant, restaurantId);
+	const [addReview, {isLoading: isAddReviewLoading}] = useAddReviewMutation();
 
-	const restaurant = useSelector(state =>
-		selectRestaurantById(state, restaurantId)
-	);
+	const handleSubmit = review => {
+		addReview({restaurantId: restaurantId, review});
+	};
 
-	const {name} = restaurant || {};
+	const {name} = data || {};
+
 	const tabs = [
 		{title: 'Menu', slug: 'menu'},
 		{title: 'Review', slug: 'review'}
 	];
 
-	if (requestStatus === IDLE) {
-		dispatch(getRestaurant(restaurantId));
-	}
-
-	if (requestStatus === PENDING) {
+	if (isLoading) {
 		return 'loading...';
 	}
 
-	if (requestStatus === REJECTED) {
-		return 'error';
+	if (isError) {
+		return 'ERROR';
 	}
 
 	return (
@@ -43,6 +46,16 @@ function RestarauntSinglePage() {
 				))}
 			</Tabs>
 			<Outlet context={restaurantId} />
+			{isAuth && (
+				<div className="container">
+					<Cart />
+					<h2>Reviews:</h2>
+					<ReviewForm
+						onSubmit={handleSubmit}
+						isSubmitButtonDisabled={isAddReviewLoading}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

@@ -1,31 +1,37 @@
 import {useOutletContext} from 'react-router-dom';
-import {useRequest} from '../../../../../redux/hooks/use-request.js';
-import {useSelector} from 'react-redux';
-import {getReviews} from '../../../../../redux/entities/reviews/get-reviews.js';
-import {IDLE, PENDING, REJECTED} from '../../../../../redux/constant.js';
-import {selectRestaurantReviewsById} from '../../../../../redux/entities/reviews/slice';
+import {
+	useGetReviewsByRestaurantIdQuery,
+	useGetUsersQuery
+} from '../../../../../redux/services/api';
 import Review from '../../Review';
 
 function RestaurantReview() {
 	const restaurantId = useOutletContext();
-	const requestStatus = useRequest(getReviews, restaurantId);
 
-	const reviews = useSelector(state =>
-		selectRestaurantReviewsById(state, restaurantId)
-	);
+	const {isLoading: isUsersLoading, isError: isUsersError} = useGetUsersQuery();
 
-	if (requestStatus === IDLE || requestStatus === PENDING) {
-		return 'loading Reviews...';
+	const {
+		data,
+		isFetching: isReviewsLoading,
+		isError: isReviewsError
+	} = useGetReviewsByRestaurantIdQuery(restaurantId);
+
+	const isLoading = isUsersLoading || isReviewsLoading;
+
+	const isError = isUsersError || isReviewsError;
+
+	if (isLoading) {
+		return 'loading...';
 	}
 
-	if (requestStatus === REJECTED) {
-		return 'error';
+	if (isError) {
+		return 'ERROR';
 	}
 
 	return (
 		<div>
 			<h2>Reviews:</h2>
-			<Review reviews={reviews} />
+			<Review reviews={data} />
 		</div>
 	);
 }

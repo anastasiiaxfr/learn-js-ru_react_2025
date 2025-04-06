@@ -1,22 +1,17 @@
-import {useSelector} from 'react-redux';
 import {Outlet} from 'react-router';
-import {getRestaurants} from '../../../redux/entities/restaurants/get-restaurants.js';
-import {useRequest} from '../../../redux/hooks/use-request';
-import {selectRestaurantsIds} from '../../../redux/entities/restaurants/slice.js';
-import {IDLE, PENDING, REJECTED} from '../../../redux/constant.js';
 import Tabs from '../../UI/Tabs/index.jsx';
 import Tags from './Tags';
+import {useGetRestaurantsQuery} from '../../../redux/services/api.js';
 
 function RestaurauntsPage() {
-	const requestStatus = useRequest(getRestaurants);
-	const restaurantsIds = useSelector(selectRestaurantsIds);
+	const {data, isLoading, isError} = useGetRestaurantsQuery();
 
-	if (requestStatus === IDLE || requestStatus === PENDING) {
+	if (isLoading) {
 		return 'loading...';
 	}
 
-	if (requestStatus === REJECTED) {
-		return 'error';
+	if (isError) {
+		return 'ERROR';
 	}
 
 	return (
@@ -24,8 +19,8 @@ function RestaurauntsPage() {
 			<section>
 				<div className="container">
 					<Tabs>
-						{restaurantsIds.map(id => (
-							<Tags key={id} id={id} />
+						{data.map(({id, name}) => (
+							<Tags key={id} id={id} name={name} />
 						))}
 					</Tabs>
 				</div>
