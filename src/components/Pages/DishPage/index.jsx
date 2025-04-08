@@ -1,4 +1,4 @@
-import {use} from 'react';
+import {use, useEffect} from 'react';
 import {useRequest} from '../../../redux/hooks/use-request.js';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams, useNavigate} from 'react-router';
@@ -13,7 +13,6 @@ import {IDLE, PENDING, REJECTED} from '../../../redux/constant.js';
 
 function DishPage() {
 	const dispatch = useDispatch();
-
 	const {dishId} = useParams();
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
@@ -23,13 +22,15 @@ function DishPage() {
 	const restaurantId = searchParams.get('res');
 	const requestStatus = useRequest(getDish, dishId);
 
-	const dish = useSelector(state => selectDishById(state, dishId));
+	const dish = useSelector((state) => selectDishById(state, dishId));
 
 	const {name, price, ingredients} = dish;
 
-	if (requestStatus === IDLE) {
-		dispatch(getDish(dishId));
-	}
+	useEffect(() => {
+		if (requestStatus === 'IDLE') {
+			dispatch(getDish(dishId));
+		}
+	}, [dishId, requestStatus, dispatch]);
 
 	if (requestStatus === PENDING) {
 		return 'loading...';
