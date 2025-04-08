@@ -1,14 +1,18 @@
-import {use} from 'react';
-import {useParams, useLocation, useNavigate} from 'react-router';
+import {use, useEffect} from 'react';
+import {useRequest} from '../../../redux/hooks/use-request.js';
+import {useDispatch, useSelector} from 'react-redux';
+import {useParams, useNavigate} from 'react-router';
 import {useSearchParams} from 'react-router';
+import {getDish} from '../../../redux/entities/dishes/get-dish.js';
 
 import AuthContext from '../../Context/AuthContext/constant';
-import {useSelector} from 'react-redux';
 import {selectDishById} from '../../../redux/entities/dishes/slice';
 import Counter from '../../Pages/RestaurantPage/Dishes/Counter';
 import Button from '../../UI/Button';
+import {IDLE, PENDING, REJECTED} from '../../../redux/constant.js';
 
 function DishPage() {
+	const dispatch = useDispatch();
 	const {dishId} = useParams();
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
@@ -16,9 +20,25 @@ function DishPage() {
 	const {isAuth} = use(AuthContext);
 
 	const restaurantId = searchParams.get('res');
-	const {name, price, ingredients} = useSelector((state) =>
-		selectDishById(state, dishId)
-	);
+	const requestStatus = useRequest(getDish, dishId);
+
+	const dish = useSelector((state) => selectDishById(state, dishId));
+
+	const {name, price, ingredients} = dish;
+
+	useEffect(() => {
+		if (requestStatus === 'IDLE') {
+			dispatch(getDish(dishId));
+		}
+	}, [dishId, requestStatus, dispatch]);
+
+	if (requestStatus === PENDING) {
+		return 'loading...';
+	}
+
+	if (requestStatus === REJECTED) {
+		return 'error';
+	}
 
 	return (
 		<div className="container">

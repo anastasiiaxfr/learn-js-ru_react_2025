@@ -1,6 +1,6 @@
 import {use} from 'react';
 import {Outlet} from 'react-router';
-
+import AuthContext from '../Context/AuthContext/constant';
 import ThemeContext from '../Context/ThemeContext/constant';
 import Header from './TheHeader';
 import Footer from './TheFooter';
@@ -9,6 +9,7 @@ import Cart from '../Pages/RestaurantPage/Cart';
 
 const Layout = () => {
 	const {theme} = use(ThemeContext);
+	const {isAuth} = use(AuthContext);
 
 	return (
 		<div className={theme === 'dark' ? 'dark' : 'light'}>
@@ -17,9 +18,11 @@ const Layout = () => {
 				<ProgressBar />
 				<main className="page">
 					<Outlet />
-					<div className="container">
-						<Cart />
-					</div>
+					{isAuth && (
+						<div className="container">
+							<Cart />
+						</div>
+					)}
 				</main>
 			</div>
 			<Footer />
