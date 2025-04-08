@@ -8,7 +8,7 @@ function Dish({data, restaurantId}) {
 			<span>
 				{name}: <b>{price} usd</b>
 			</span>{' '}
-			<Link to={`/dish/${id}?res=${restaurantId}`}>About</Link>
+			<Link to={`/dish/${id}?restaurantId=${restaurantId}`}>About</Link>
 		</li>
 	);
 }

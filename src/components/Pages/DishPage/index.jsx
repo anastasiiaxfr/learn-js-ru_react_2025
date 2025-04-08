@@ -13,7 +13,7 @@ function DishPage() {
 
 	const {isAuth} = use(AuthContext);
 
-	const restaurantId = searchParams.get('res');
+	const restaurantId = searchParams.get('restaurantId');
 
 	const {data, isLoading, isError} = useGetDishByDishIdQuery(dishId);
 
@@ -24,8 +24,6 @@ function DishPage() {
 	if (isError) {
 		return 'ERROR';
 	}
-
-	console.log('data', data);
 
 	const {name, price, ingredients} = data;
 

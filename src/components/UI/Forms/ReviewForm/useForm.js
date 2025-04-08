@@ -45,7 +45,8 @@ export function useForm() {
 		dispatch({type: SET_FIELD, field: name, value});
 	};
 
-	const onFormSubmit = () => {
+	const onFormSubmit = (e) => {
+
 		if (!state.name || !state.review || state.count === 0) {
 			dispatch({
 				type: SET_ERROR,

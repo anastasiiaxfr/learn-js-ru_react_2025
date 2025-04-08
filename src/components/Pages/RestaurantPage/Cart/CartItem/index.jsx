@@ -8,7 +8,7 @@ import {useGetDishByDishIdQuery} from '../../../../../redux/services/api';
 import Counter from '../../Dishes/Counter';
 
 function CartItem({id, restaurantId, as: Component = 'li'}) {
-	const amount = useSelector(state => selectAmountByDishId(state, {id})); // FIXME
+	const amount = useSelector((state) => selectAmountByDishId(state, {id}));
 
 	const dish = useGetDishByDishIdQuery(id);
 
