@@ -3,8 +3,8 @@ import ReviewListItem from './ReviewListItem';
 function ReviewRestaurant({reviews}) {
 	return (
 		<ul>
-			{reviews.map((id) => (
-				<ReviewListItem id={id} key={id} />
+			{reviews.map(data => (
+				<ReviewListItem data={data} key={data.id} />
 			))}
 		</ul>
 	);

@@ -1,21 +1,26 @@
-import {useSelector} from 'react-redux';
 import {Outlet} from 'react-router';
-
-import {selectRestaurantsIds} from '../../../redux/entities/restaurants/slice.js';
-
 import Tabs from '../../UI/Tabs/index.jsx';
 import Tags from './Tags';
+import {useGetRestaurantsQuery} from '../../../redux/services/api.js';
 
 function RestaurauntsPage() {
-	const restaurantsIds = useSelector(selectRestaurantsIds);
+	const {data, isLoading, isError} = useGetRestaurantsQuery();
+
+	if (isLoading) {
+		return 'loading...';
+	}
+
+	if (isError) {
+		return 'ERROR';
+	}
 
 	return (
 		<>
 			<section>
 				<div className="container">
 					<Tabs>
-						{restaurantsIds.map((id) => (
-							<Tags key={id} id={id} />
+						{data.map(({id, name}) => (
+							<Tags key={id} id={id} name={name} />
 						))}
 					</Tabs>
 				</div>

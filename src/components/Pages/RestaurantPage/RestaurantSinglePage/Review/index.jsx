@@ -1,19 +1,37 @@
 import {useOutletContext} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import {selectRestaurantById} from '../../../../../redux/entities/restaurants/slice';
+import {
+	useGetReviewsByRestaurantIdQuery,
+	useGetUsersQuery
+} from '../../../../../redux/services/api';
 import Review from '../../Review';
 
 function RestaurantReview() {
 	const restaurantId = useOutletContext();
 
-	const restaurant = useSelector((state) =>
-		selectRestaurantById(state, restaurantId)
-	);
-	const {reviews} = restaurant || {};
+	const {isLoading: isUsersLoading, isError: isUsersError} = useGetUsersQuery();
+
+	const {
+		data,
+		isFetching: isReviewsLoading,
+		isError: isReviewsError
+	} = useGetReviewsByRestaurantIdQuery(restaurantId);
+
+	const isLoading = isUsersLoading || isReviewsLoading;
+
+	const isError = isUsersError || isReviewsError;
+
+	if (isLoading) {
+		return 'loading...';
+	}
+
+	if (isError) {
+		return 'ERROR';
+	}
+
 	return (
 		<div>
 			<h2>Reviews:</h2>
-			<Review reviews={reviews} />
+			<Review reviews={data} />
 		</div>
 	);
 }

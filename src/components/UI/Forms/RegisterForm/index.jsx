@@ -12,7 +12,7 @@ export default function RegisterForm() {
 			method="POST"
 			noValidate
 			className={s.form}
-			onSubmit={(e) => onFormSubmit(e)}
+			onSubmit={onFormSubmit}
 		>
 			<div>
 				<label htmlFor="name">Name</label>

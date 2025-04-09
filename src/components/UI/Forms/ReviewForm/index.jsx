@@ -4,16 +4,11 @@ import {useForm} from './useForm.js';
 import Counter from '../../Counter/index.jsx';
 import Button from '../../Button/index.jsx';
 
-export default function ReviewForm() {
-	const {
-		state,
-		onFormSubmit,
-		onFormReset,
-		handleInputChange,
-		increment,
-		decrement,
-		isDisabled,
-	} = useForm();
+export default function ReviewForm({onSubmit, isSubmitButtonDisabled}) {
+	const {state, onFormReset, handleInputChange, increment, decrement} =
+		useForm();
+
+	const {review, count} = state;
 
 	return (
 		<form
@@ -21,7 +16,7 @@ export default function ReviewForm() {
 			method="GET"
 			noValidate
 			className={s.form}
-			onSubmit={(e) => e.preventDefault()}
+			onSubmit={(e) => e.preventDefault(e)}
 		>
 			<div>
 				<label htmlFor="name">Name</label>
@@ -57,8 +52,18 @@ export default function ReviewForm() {
 			{state.error && <div className={s.error}>{state.error}</div>}
 
 			<div className={s.btns}>
-				<Button onClick={onFormSubmit}>Send</Button>
-				<Button onClick={onFormReset} disabled={isDisabled}>
+				<Button
+					onClick={() =>
+						onSubmit({
+							text: review,
+							rating: count,
+							userId: '20bed9b5-9c7b-4771-8221-75b74ed1904a',
+						})
+					}
+				>
+					Send
+				</Button>
+				<Button onClick={onFormReset} disabled={isSubmitButtonDisabled}>
 					Cancel
 				</Button>
 			</div>

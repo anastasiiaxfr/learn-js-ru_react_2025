@@ -1,19 +1,25 @@
 import {useOutletContext} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import {selectRestaurantById} from '../../../../../redux/entities/restaurants/slice';
+import {useGetDishesByRestaurantIdQuery} from '../../../../../redux/services/api';
 import Dishes from '../../Dishes';
 
 function RestaurantMenu() {
 	const restaurantId = useOutletContext();
-	const restaurant = useSelector((state) =>
-		selectRestaurantById(state, restaurantId)
+	const {data, isLoading, isError} = useGetDishesByRestaurantIdQuery(
+		restaurantId
 	);
-	const {menu} = restaurant || {};
+
+	if (isLoading) {
+		return 'loading...';
+	}
+
+	if (isError) {
+		return 'ERROR';
+	}
 
 	return (
 		<div>
 			<h2>Menu:</h2>
-			<Dishes menu={menu} restaurantId={restaurantId} />
+			<Dishes menu={data} restaurantId={restaurantId} />
 		</div>
 	);
 }

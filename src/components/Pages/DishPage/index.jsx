@@ -1,10 +1,8 @@
 import {use} from 'react';
-import {useParams, useLocation, useNavigate} from 'react-router';
+import {useParams, useNavigate} from 'react-router';
 import {useSearchParams} from 'react-router';
-
+import {useGetDishByDishIdQuery} from '../../../redux/services/api';
 import AuthContext from '../../Context/AuthContext/constant';
-import {useSelector} from 'react-redux';
-import {selectDishById} from '../../../redux/entities/dishes/slice';
 import Counter from '../../Pages/RestaurantPage/Dishes/Counter';
 import Button from '../../UI/Button';
 
@@ -15,10 +13,19 @@ function DishPage() {
 
 	const {isAuth} = use(AuthContext);
 
-	const restaurantId = searchParams.get('res');
-	const {name, price, ingredients} = useSelector((state) =>
-		selectDishById(state, dishId)
-	);
+	const restaurantId = searchParams.get('restaurantId');
+
+	const {data, isLoading, isError} = useGetDishByDishIdQuery(dishId);
+
+	if (isLoading) {
+		return 'loading...';
+	}
+
+	if (isError) {
+		return 'ERROR';
+	}
+
+	const {name, price, ingredients} = data;
 
 	return (
 		<div className="container">
