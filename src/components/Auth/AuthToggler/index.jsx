@@ -1,3 +1,4 @@
+'use client';
 import {useContext, useState} from 'react';
 import AuthContext from '../../Context/AuthContext/constant';
 import Button from '../../UI/Button';
@@ -12,7 +13,7 @@ export default function AuthToggle() {
 		if (isAuth) {
 			logout();
 		} else {
-			setShowModal(prev => !prev);
+			setShowModal((prev) => !prev);
 		}
 	};
 

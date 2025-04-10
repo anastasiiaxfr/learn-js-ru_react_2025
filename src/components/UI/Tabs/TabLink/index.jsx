@@ -1,17 +1,12 @@
-import classNames from 'classnames';
-
-import {NavLink} from 'react-router';
+import Link from 'next/link';
 import s from '../styles.module.sass';
 
 function NavTab({item}) {
 	const {slug, title} = item;
 	return (
-		<NavLink
-			to={slug}
-			className={({isActive}) => classNames(s.tag, {[s.isActive]: isActive})}
-		>
+		<Link href={slug} className={s.tag}>
 			{title}
-		</NavLink>
+		</Link>
 	);
 }
 

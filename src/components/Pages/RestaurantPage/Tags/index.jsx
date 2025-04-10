@@ -1,16 +1,13 @@
-import classNames from 'classnames';
+'use client';
 
-import {NavLink} from 'react-router';
+import Link from 'next/link';
 import s from '../../../UI/Tabs/styles.module.sass';
 
 function RestaurauntTags({id, name}) {
 	return (
-		<NavLink
-			to={id}
-			className={({isActive}) => classNames(isActive ? s.isActive : '', s.tag)}
-		>
+		<Link href={`/restaurants/${id}`} className={s.tag}>
 			{name}
-		</NavLink>
+		</Link>
 	);
 }
 

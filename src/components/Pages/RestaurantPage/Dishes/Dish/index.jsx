@@ -1,6 +1,6 @@
-import {Link} from 'react-router';
+import Link from 'next/link';
 
-function Dish({data, restaurantId}) {
+function Dish({data}) {
 	const {name, price, id} = data;
 
 	return (
@@ -8,7 +8,7 @@ function Dish({data, restaurantId}) {
 			<span>
 				{name}: <b>{price} usd</b>
 			</span>{' '}
-			<Link to={`/dish/${id}?restaurantId=${restaurantId}`}>About</Link>
+			<Link href={`/dish/${id}`}>About</Link>
 		</li>
 	);
 }

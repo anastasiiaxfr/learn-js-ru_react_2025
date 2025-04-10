@@ -1,3 +1,4 @@
+'use client';
 import {Outlet} from 'react-router';
 import Tabs from '../../UI/Tabs/index.jsx';
 import Tags from './Tags';
