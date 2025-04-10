@@ -1,19 +1,17 @@
-import {useOutletContext} from 'react-router-dom';
+'use client';
 import {
 	useGetReviewsByRestaurantIdQuery,
-	useGetUsersQuery
+	useGetUsersQuery,
 } from '../../../../../redux/services/api';
 import Review from '../../Review';
 
-function RestaurantReview() {
-	const restaurantId = useOutletContext();
-
+function RestaurantReview({restaurantId}) {
 	const {isLoading: isUsersLoading, isError: isUsersError} = useGetUsersQuery();
 
 	const {
 		data,
 		isFetching: isReviewsLoading,
-		isError: isReviewsError
+		isError: isReviewsError,
 	} = useGetReviewsByRestaurantIdQuery(restaurantId);
 
 	const isLoading = isUsersLoading || isReviewsLoading;

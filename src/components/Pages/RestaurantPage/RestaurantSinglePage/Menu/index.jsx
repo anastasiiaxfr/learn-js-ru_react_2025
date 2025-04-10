@@ -1,12 +1,10 @@
-import {useOutletContext} from 'react-router-dom';
+'use client';
 import {useGetDishesByRestaurantIdQuery} from '../../../../../redux/services/api';
 import Dishes from '../../Dishes';
 
-function RestaurantMenu() {
-	const restaurantId = useOutletContext();
-	const {data, isLoading, isError} = useGetDishesByRestaurantIdQuery(
-		restaurantId
-	);
+function RestaurantMenu({restaurantId}) {
+	const {data, isLoading, isError} =
+		useGetDishesByRestaurantIdQuery(restaurantId);
 
 	if (isLoading) {
 		return 'loading...';

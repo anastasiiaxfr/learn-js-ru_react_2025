@@ -1,3 +1,5 @@
+'use client';
+
 import {use} from 'react';
 import {Outlet} from 'react-router';
 
@@ -6,7 +8,7 @@ import Header from './TheHeader';
 import Footer from './TheFooter';
 import ProgressBar from '../UI/ProgressBar';
 
-const Layout = () => {
+const Layout = ({children}) => {
 	const {theme} = use(ThemeContext);
 
 	return (
@@ -15,6 +17,7 @@ const Layout = () => {
 				<Header />
 				<ProgressBar />
 				<main className="page">
+					<div>{children}</div>
 					<Outlet />
 				</main>
 			</div>

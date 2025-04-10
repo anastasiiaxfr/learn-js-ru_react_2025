@@ -1,19 +1,16 @@
+'use client';
 import {use} from 'react';
-import {useParams, useNavigate} from 'react-router';
-import {useSearchParams} from 'react-router';
+import {useRouter} from 'next/navigation';
+
 import {useGetDishByDishIdQuery} from '../../../redux/services/api';
 import AuthContext from '../../Context/AuthContext/constant';
 import Counter from '../../Pages/RestaurantPage/Dishes/Counter';
 import Button from '../../UI/Button';
 
-function DishPage() {
-	const {dishId} = useParams();
-	const [searchParams] = useSearchParams();
-	const navigate = useNavigate();
+function DishPage({dishId}) {
+	const router = useRouter();
 
 	const {isAuth} = use(AuthContext);
-
-	const restaurantId = searchParams.get('restaurantId');
 
 	const {data, isLoading, isError} = useGetDishByDishIdQuery(dishId);
 
@@ -33,14 +30,14 @@ function DishPage() {
 			<p>
 				<b>Price:</b> {price} usd
 			</p>
-			{isAuth && <Counter id={dishId} restaurantId={restaurantId} />}
+			{/* {isAuth && <Counter id={dishId} restaurantId={restaurantId} />} */}
 			<h3>Ingredients:</h3>
 			<ul>
 				{ingredients.map((item, index) => (
 					<li key={index}>{item}</li>
 				))}
 			</ul>
-			<Button onClick={() => navigate(-1)} style="bd">
+			<Button onClick={() => router.back()} style="bd">
 				Go Back
 			</Button>
 		</div>
