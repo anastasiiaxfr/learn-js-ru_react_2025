@@ -1,9 +1,8 @@
 'use client';
 import {use} from 'react';
-import {Outlet} from 'react-router-dom';
 import {
 	useGetRestaurantByIdQuery,
-	useAddReviewMutation,
+	useAddReviewMutation
 } from '../../../../redux/services/api.js';
 import AuthContext from '../../../Context/AuthContext/constant';
 import Tabs from '../../../UI/Tabs/index.jsx';
@@ -18,7 +17,7 @@ function RestarauntSinglePage({restaurauntId}) {
 
 	const [addReview, {isLoading: isAddReviewLoading}] = useAddReviewMutation();
 
-	const handleSubmit = (review) => {
+	const handleSubmit = review => {
 		addReview({restaurauntId: restaurauntId, review});
 	};
 
@@ -26,7 +25,7 @@ function RestarauntSinglePage({restaurauntId}) {
 
 	const tabs = [
 		{title: 'Menu', slug: `/restaurants/${restaurauntId}/menu`},
-		{title: 'Review', slug: `/restaurants/${restaurauntId}/review`},
+		{title: 'Review', slug: `/restaurants/${restaurauntId}/review`}
 	];
 
 	if (isLoading) {
@@ -38,14 +37,13 @@ function RestarauntSinglePage({restaurauntId}) {
 	}
 
 	return (
-		<div className="container">
+		<div className="">
 			<h1>{name}</h1>
 			<Tabs>
-				{tabs.map((item) => (
+				{tabs.map(item => (
 					<Tab key={item.slug} item={item} />
 				))}
 			</Tabs>
-			<Outlet context={restaurauntId} />
 			{isAuth && (
 				<div className="container">
 					<Cart />

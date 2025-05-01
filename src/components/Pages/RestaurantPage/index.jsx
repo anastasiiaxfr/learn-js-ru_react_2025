@@ -1,5 +1,4 @@
 'use client';
-import {Outlet} from 'react-router';
 import Tabs from '../../UI/Tabs/index.jsx';
 import Tags from './Tags';
 import {useGetRestaurantsQuery} from '../../../redux/services/api.js';
@@ -26,8 +25,6 @@ function RestaurauntsPage() {
 					</Tabs>
 				</div>
 			</section>
-
-			<Outlet />
 		</>
 	);
 }

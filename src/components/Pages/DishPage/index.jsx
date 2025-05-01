@@ -25,22 +25,23 @@ function DishPage({dishId}) {
 	const {name, price, ingredients} = data;
 
 	return (
-		<div className="container">
-			<h2>{name}</h2>
-			<p>
-				<b>Price:</b> {price} usd
-			</p>
-			{/* {isAuth && <Counter id={dishId} restaurantId={restaurantId} />} */}
-			<h3>Ingredients:</h3>
-			<ul>
-				{ingredients.map((item, index) => (
-					<li key={index}>{item}</li>
-				))}
-			</ul>
-			<Button onClick={() => router.back()} style="bd">
-				Go Back
-			</Button>
-		</div>
+		<main className="page">
+			<div className="container">
+				<h2>{name}</h2>
+				<p>
+					<b>Price:</b> {price} usd
+				</p>
+				<h3>Ingredients:</h3>
+				<ul>
+					{ingredients.map((item, index) => (
+						<li key={index}>{item}</li>
+					))}
+				</ul>
+				<Button onClick={() => router.back()} style="bd">
+					Go Back
+				</Button>
+			</div>
+		</main>
 	);
 }
 
