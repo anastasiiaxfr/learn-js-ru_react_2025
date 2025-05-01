@@ -1,3 +1,3 @@
-import RestaurantsPage from '../../components/Pages/RestaurantPage';
-
-export default RestaurantsPage;
+export default function Page() {
+	return <p>Choose a restaurant</p>;
+}
