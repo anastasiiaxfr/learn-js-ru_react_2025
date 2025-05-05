@@ -1,11 +1,13 @@
+'use client';
 import {use} from 'react';
-import {NavLink} from 'react-router';
-import classNames from 'classnames';
 
 import AuthContext from '../Context/AuthContext/constant';
 import ThemeSwithcer from '../UI/ThemeSwitcher';
 import AuthToggle from '../Auth/AuthToggler';
 import UserAva from '../User/UserAva';
+
+import Link from 'next/link';
+import {usePathname} from 'next/navigation';
 
 const menu = [
 	{title: 'Home', slug: '/'},
@@ -14,6 +16,7 @@ const menu = [
 
 function Header() {
 	const {userEmail} = use(AuthContext);
+	const pathname = usePathname();
 
 	return (
 		<header className="header">
@@ -24,15 +27,13 @@ function Header() {
 					</a>
 					<nav className="menu">
 						{menu.map((link) => (
-							<NavLink
+							<Link
 								key={link.slug}
-								to={link.slug}
-								className={({isActive}) =>
-									classNames(isActive ? 'isActive' : '')
-								}
+								href={link.slug}
+								className={pathname === link.slug ? 'isActive' : ''}
 							>
 								{link.title}
-							</NavLink>
+							</Link>
 						))}
 					</nav>
 					<div className="btns">

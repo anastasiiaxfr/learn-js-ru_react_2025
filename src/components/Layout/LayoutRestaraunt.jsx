@@ -18,7 +18,6 @@ const Layout = () => {
 				<ProgressBar />
 				<main className="page">
 					<Outlet />
-					
 				</main>
 			</div>
 			<Footer />

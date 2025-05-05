@@ -1,25 +1,16 @@
-import {use} from 'react';
-import {Outlet} from 'react-router';
-
-import ThemeContext from '../Context/ThemeContext/constant';
+import ThemeLayout from './ThemeDefault';
 import Header from './TheHeader';
 import Footer from './TheFooter';
-import ProgressBar from '../UI/ProgressBar';
 
-const Layout = () => {
-	const {theme} = use(ThemeContext);
-
+const Layout = ({children}) => {
 	return (
-		<div className={theme === 'dark' ? 'dark' : 'light'}>
+		<ThemeLayout>
 			<div className="page_wrapper">
 				<Header />
-				<ProgressBar />
-				<main className="page">
-					<Outlet />
-				</main>
+				{children}
 			</div>
 			<Footer />
-		</div>
+		</ThemeLayout>
 	);
 };
 
