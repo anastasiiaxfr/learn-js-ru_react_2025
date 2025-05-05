@@ -1,18 +1,17 @@
-import '@/styles/styles.sass';
+import { RestaurantLayout } from "@/components/Layout/RestaurantLayout";
+import { getRestaurants } from "@/services/get-restaurants";
 
-import RestaurantPage from '../../../components/Pages/RestaurantPage/RestaurantSinglePage';
+export const generateMetadata = async ({ params }) => {
+	const { restaurauntId } = await params;
+  
+	const restaurants = await getRestaurants();
+  
+	const restaurant = restaurants.find(({ id }) => restaurauntId === id);
 
-const Page = async ({params, children}) => {
-	const {restaurauntId} = await params;
 
-	return (
-		<main className="page">
-			<div className="container">
-				<RestaurantPage restaurauntId={restaurauntId} />
-				{children}
-			</div>
-		</main>
-	);
-};
-
-export default Page;
+	return {
+	  title: restaurant.name,
+	};
+  };
+  
+  export default RestaurantLayout;

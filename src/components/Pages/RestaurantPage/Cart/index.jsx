@@ -1,33 +1,33 @@
+'use client';
+import {use} from 'react';
+
 import {useSelector} from 'react-redux';
+import AuthContext from '@/components/Context/AuthContext/constant';
+
 import {selectCartItems} from '../../../../redux/entities/cart/slice';
 
 import CartItem from './CartItem';
 import s from './styles.module.sass';
 import TotalSum from './TotalSum';
 
-const Cart = () => {
+export default function Cart() {
 	const items = useSelector(selectCartItems);
-	if (Object.keys(items).length <= 0) {
-		return;
-	}
-	return (
-		<>
-			<h2>Orders:</h2>
-			<div className={s.orders}>
-				<ul className={s.orders_list}>
-					{Object.keys(items).map((itemId) => {
-						const {restaurantId} = items[itemId];
+	const {isAuth} = use(AuthContext);
 
-						return (
-							<CartItem id={itemId} key={itemId} restaurantId={restaurantId} />
-						);
-					})}
-				</ul>
-				<hr />
-				<TotalSum />
-			</div>
-		</>
-	);
-};
+	return isAuth ? (
+		<div className="container">
+			<h2>Orders: </h2>
+			{Object.keys(items).map((itemId) => {
+				const {restaurantId} = items[itemId];
 
-export default Cart;
+				return (
+					<ul key={itemId}>
+						<CartItem id={itemId} key={itemId} restaurantId={restaurantId} />
+					</ul>
+				);
+			})}
+			<hr />
+			<TotalSum />
+		</div>
+	) : null;
+}
