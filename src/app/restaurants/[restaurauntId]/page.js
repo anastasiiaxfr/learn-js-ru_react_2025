@@ -1,5 +1,5 @@
 const Page = async () => {
-	return <></>;
+	return null;
 };
 
 export default Page;
