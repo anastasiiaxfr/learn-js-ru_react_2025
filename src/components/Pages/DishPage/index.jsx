@@ -1,48 +1,20 @@
-'use client';
-import {use} from 'react';
-import {useRouter} from 'next/navigation';
+import {getMenuByDishId} from '@/services/get-menu-by-dish-id';
 
-import {useGetDishByDishIdQuery} from '../../../redux/services/api';
-import AuthContext from '../../Context/AuthContext/constant';
-import Counter from '../../Pages/RestaurantPage/Dishes/Counter';
-import Button from '../../UI/Button';
+import {DishContainer} from '@/components/Pages/DishPage/DishContainer';
+import {Suspense} from 'react';
 
-function DishPage({dishId}) {
-	const router = useRouter();
-
-	const {isAuth} = use(AuthContext);
-
-	const {data, isLoading, isError} = useGetDishByDishIdQuery(dishId);
-
-	if (isLoading) {
-		return 'loading...';
-	}
-
-	if (isError) {
-		return 'ERROR';
-	}
-
-	const {name, price, ingredients} = data;
+const DishPage = ({dishId}) => {
+	const menuPromise = getMenuByDishId(dishId);
 
 	return (
 		<main className="page">
 			<div className="container">
-				<h2>{name}</h2>
-				<p>
-					<b>Price:</b> {price} usd
-				</p>
-				<h3>Ingredients:</h3>
-				<ul>
-					{ingredients.map((item, index) => (
-						<li key={index}>{item}</li>
-					))}
-				</ul>
-				<Button onClick={() => router.back()} style="bd">
-					Go Back
-				</Button>
+				<Suspense fallback="loading...">
+					<DishContainer menuPromise={menuPromise} dishId={dishId} />
+				</Suspense>
 			</div>
 		</main>
 	);
-}
+};
 
 export default DishPage;

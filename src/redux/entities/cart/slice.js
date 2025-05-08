@@ -42,6 +42,10 @@ const selectCartSlice = (state) => state.cartSlice;
 
 export const selectCartItems = selectCartSlice;
 
+export const selectCartItemsIds = createSelector([selectCartSlice], (cart) =>
+	Object.keys(cart)
+);
+
 export const selectTotalSum = createSelector([selectCartSlice], (cart) => {
 	return Object.keys(cart).reduce((total, id) => {
 	  const { amount } = cart[id]; 
